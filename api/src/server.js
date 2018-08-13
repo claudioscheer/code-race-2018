@@ -1,10 +1,10 @@
-const express = require('express');
-const app = express();
+const app = require('./config/appConfig');
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
+app.get('/',function(request,response){
+    response.end('API Code Race');
+})
 
-app.listen(3000, () => {
-    console.log('Listening on port 3000...');
-});
+const userRoute = require('./routes/userRoute');
+
+//Routes
+app.use('/users',userRoute);
