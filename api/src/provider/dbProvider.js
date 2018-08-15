@@ -15,9 +15,6 @@ module.exports = {
             }).catch((error) => {
                 reject(error);
             });
-
-
-
         });
 
     },
