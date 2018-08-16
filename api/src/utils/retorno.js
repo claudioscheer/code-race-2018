@@ -1,12 +1,9 @@
-module.exports = function Retorno(Status, Ok, Mensagem, data){
-
-    let retorno = {
-        "Status": Status,
-        "Ok" : Ok,
-        "Mensagem": Mensagem,
-        "data" : data       
-    }
-
+module.exports = (status, ok, mensagem, data) => {
+    const retorno = {
+        status,
+        ok,
+        mensagem,
+        data,
+    };
     return JSON.stringify(retorno);
-
-}
+};

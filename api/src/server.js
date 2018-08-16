@@ -1,10 +1,9 @@
 const app = require('./config/appConfig');
-
-app.get('/',function(request,response){
-    response.end('API Code Race');
-})
-
 const userRoute = require('./routes/userRoute');
 
-//Routes
-app.use('/users',userRoute);
+app.get('/', (req, res) => {
+    res.end('API Code Race.');
+});
+
+// Definição das rotas.
+app.use('/users', userRoute);
