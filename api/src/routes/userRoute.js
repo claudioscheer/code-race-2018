@@ -1,47 +1,50 @@
-let express = require('express');
-let retorno = require('../utils/retorno');
-let userController = require('../controllers/userContoller');
-let router = express.Router();
-const auth      = require('../controllers/auth');
+const express = require('express');
+const userController = require('../controllers/userContoller');
+const auth = require('../controllers/auth');
 
-//Validation user exists
+const router = express.Router();
+
+// Valida se o usuário existe.
 router.post(
     '/login',
-    userController.validateUser
+    userController.validateUser,
 );
 
-//get user complete Info by Id or All users
+// Informações completas sobre o usuário.
 router.post(
     '/find',
     auth.verifyToken,
-    userController.findOne
+    userController.findOne,
 );
 
-//User register and update
+// Salvar ou atualizar usuário.
 router.post(
     '/create',
     auth.verifyToken,
-    userController.insert
+    userController.insert,
 );
 
-router.post('/verifyToken',function(req, res){
-    if(auth.verifyToken){
-        res.status(200);
-    }
-})
+router.post(
+    '/verifyToken',
+    (req, res) => {
+        if (auth.verifyToken) {
+            res.status(200);
+        }
+    },
+);
 
-//Update user if exists
+// Atualizar usuário se ele existir.
 router.post(
     '/update',
     auth.verifyToken,
-    userController.updateOne
+    userController.updateOne,
 );
 
-//User delete
+// Excluir usuário.
 router.post(
     '/delete',
     auth.verifyToken,
-    userController.delete
+    userController.delete,
 );
 
 module.exports = router;

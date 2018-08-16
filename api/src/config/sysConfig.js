@@ -1,18 +1,14 @@
-let config = {
-
-    "app" : {
-        "portListener" : 3000
+const config = {
+    app: {
+        portListener: 3000,
     },
-
-    "db" : {
-        "host": "localhost",
-        "port" : 27017,
-        "user" : "",
-        "password" : "",
-        "database" : "coderace"        
+    db: {
+        host: 'localhost',
+        port: 27017,
+        user: '',
+        password: '',
+        database: 'coderace',
     },
-
-    
-}
+};
 
 module.exports = config;

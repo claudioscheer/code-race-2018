@@ -1,79 +1,55 @@
-
-//FORMAT OF TOKEN
-//Authorization: Bearer <access_token>
-
+// Authorization: Bearer <access_token>
 const jwt = require('jsonwebtoken');
 
-// functions available
 module.exports = {
-
     verifyToken(req, res, next) {
-        //get auth header value
-        const userHeader = req.headers['authorization'];
+        const userHeader = req.headers.authorization;
+        const response = {
+            code: 403,
+            message: '',
+        };
 
-        console.log("HEderrrr ", req.headers);
-
-        let response = {
-            code : 403,
-            message : "" 
-        }
-
-        //Check f bearer is undefined
+        // Check if bearer is undefined
         if (typeof userHeader !== 'undefined') {
-            //Split at the space
+            // Split at the space
             const token = userHeader.split(' ');
-            //Get token from array
+            // Get token from array
             const userToken = token[1];
-            //Set the token
+            // Set the token
             req.token = userToken;
 
-            console.log("Token capturado ",req.token);
-
-            //jwt check token
-            jwt.verify(req.token, 'secretkey',(err, authData) => {
+            // jwt check token
+            jwt.verify(req.token, 'secretkey', (err) => {
                 if (err) {
-                    response.message = "Token de autenticação inválido!"
+                    response.message = 'Token de autenticação inválido.';
                     res.status(403).send(response);
                 } else {
                     next();
                 }
-            })
-
+            });
         } else {
-            response.message = "Nenhum token de autenticação encontrado!"
+            response.message = 'Nenhum token de autenticação encontrado.';
             res.status(403).send(response);
         }
-
     },
-
     createToken(usuario) {
         return new Promise((resolve, reject) => {
-
-            jwt.sign({ user: usuario},'secretkey',{ expiresIn: '12h' }, (err, token) => {
-
+            jwt.sign({ user: usuario }, 'secretkey', { expiresIn: '12h' }, (err, token) => {
                 if (!err) {
                     resolve(token);
                 } else {
                     reject(err);
                 }
             });
-
-        
-
-        })
-    },
-
-    refreshToken(req, res, next) {
-
-        jwt.sign({ user: tokenAtual }, 'secretkey', (err, token) => {
-
-            if (!err) {
-                return token;
-            } else {
-                return null;
-            }
         });
-
-    }
-
-}   
+    },
+    // Verificar este trecho de código.
+    // refreshToken(req, res, next) {
+    //     jwt.sign({ user: tokenAtual }, 'secretkey', (err, token) => {
+    //         if (!err) {
+    //             return token;
+    //         }
+    //         return null;
+    //     });
+    // },
+};
