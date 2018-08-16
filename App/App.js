@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, InputText} from 'react-native';
+import {Platform, StyleSheet, Text, View} from 'react-native';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -23,7 +23,6 @@ export default class App extends Component<Props> {
       <View style={styles.container}>
         <Text style={styles.welcome}>Olá tudo bem?!</Text>
         <Text style={styles.instructions}>Faça login para continuar...</Text>
-        <InputText title="Digite seu usuário"></InputText>
       </View>
     );
   }
