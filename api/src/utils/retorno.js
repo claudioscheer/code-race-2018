@@ -5,5 +5,5 @@ module.exports = (status, ok, mensagem, data) => {
         mensagem,
         data,
     };
-    return JSON.stringify(retorno);
+    return retorno;
 };

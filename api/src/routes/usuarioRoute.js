@@ -1,6 +1,7 @@
 const express = require('express');
-const userController = require('../controllers/userContoller');
+const userController = require('../controllers/usuarioContoller');
 const auth = require('../controllers/auth');
+const retorno = require('../utils/retorno');
 
 const router = express.Router();
 
@@ -8,6 +9,13 @@ const router = express.Router();
 router.post(
     '/login',
     userController.validateUser,
+);
+
+// Todos os usuários.
+router.get(
+    '/',
+    auth.verifyToken,
+    userController.find,
 );
 
 // Informações completas sobre o usuário.
@@ -26,10 +34,9 @@ router.post(
 
 router.post(
     '/verifyToken',
+    auth.verifyToken,
     (req, res) => {
-        if (auth.verifyToken) {
-            res.status(200);
-        }
+        res.json(retorno(200, true, ''));
     },
 );
 

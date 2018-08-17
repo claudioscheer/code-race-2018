@@ -1,13 +1,10 @@
 // Authorization: Bearer <access_token>
 const jwt = require('jsonwebtoken');
+const retorno = require('../utils/retorno');
 
 module.exports = {
     verifyToken(req, res, next) {
         const userHeader = req.headers.authorization;
-        const response = {
-            code: 403,
-            message: '',
-        };
 
         // Check if bearer is undefined
         if (typeof userHeader !== 'undefined') {
@@ -21,15 +18,13 @@ module.exports = {
             // jwt check token
             jwt.verify(req.token, 'secretkey', (err) => {
                 if (err) {
-                    response.message = 'Token de autenticação inválido.';
-                    res.status(403).send(response);
+                    res.status(403).json(retorno(403, false, 'Token de autenticação inválido.'));
                 } else {
                     next();
                 }
             });
         } else {
-            response.message = 'Nenhum token de autenticação encontrado.';
-            res.status(403).send(response);
+            res.status(403).json(retorno(403, false, 'Nenhum token de autenticação encontrado.'));
         }
     },
     createToken(usuario) {
