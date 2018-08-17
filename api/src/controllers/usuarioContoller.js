@@ -30,8 +30,8 @@ module.exports = {
         });
     },
     find(req, res) {
-        provider.find('usuarios', {}).then(() => {
-            res.status(200).json();
+        provider.find('usuarios', {}).then((usuarios) => {
+            res.json(retorno(200, true, '', usuarios));
         }).catch((erro) => {
             res.status(999).json(retorno(999, false, `Não foi possível consultar os usuários. ${erro}`));
         });

@@ -10,6 +10,13 @@ router.post(
     userController.validateUser,
 );
 
+// Todos os usuários.
+router.get(
+    '/',
+    auth.verifyToken,
+    userController.find,
+);
+
 // Informações completas sobre o usuário.
 router.post(
     '/find',
