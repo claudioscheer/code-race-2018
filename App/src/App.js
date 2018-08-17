@@ -9,6 +9,7 @@ import {
 import HomeScreen from './screens/HomeScreen';
 import NotificationScreen from './screens/NotificationScreen';
 import LoginScreen from './screens/LoginScreen';
+import StartupScreen from './screens/StartupScreen';
 import Icon from './componentes/Icon';
 
 const HomeStack = createStackNavigator({
@@ -50,11 +51,12 @@ const DrawerNavigator = createDrawerNavigator({
 
 const AppNavigator = createStackNavigator(
   {
+    Startup: { screen: StartupScreen },
     Login: { screen: LoginScreen },
     DrawerHome: { screen: DrawerNavigator },
   },
   {
-    initialRouteName: 'DrawerHome',
+    initialRouteName: 'Startup',
     headerMode: 'none',
     mode: Platform.OS === 'ios' ? 'modal' : 'card',
   }

@@ -1,6 +1,7 @@
 const express = require('express');
 const parser = require('body-parser');
 const http = require('http');
+const morgan = require('morgan');
 const sysConfig = require('./sysConfig');
 
 const app = express();
@@ -15,6 +16,7 @@ server.on('error', (error) => {
     console.log(error);
 });
 
+app.use(morgan('dev'));
 app.use(parser.urlencoded({ extended: true }));
 app.use(parser.json());
 

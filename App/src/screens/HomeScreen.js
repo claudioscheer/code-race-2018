@@ -1,7 +1,7 @@
 import React from 'react';
 import {
-    Button,
 } from 'react-native';
+import Button from 'react-native-button';
 
 class HomeScreen extends React.Component {
     static navigationOptions = {
@@ -11,9 +11,11 @@ class HomeScreen extends React.Component {
     render() {
         return (
             <Button
+                activeOpacity={.7}
                 onPress={() => this.props.navigation.navigate('Notification')}
-                title="Go to notification"
-            />
+            >
+                Go to notification
+            </Button>
         );
     }
 }

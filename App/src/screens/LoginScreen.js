@@ -6,15 +6,26 @@ import {
 } from 'react-native';
 import { Isao } from 'react-native-textinput-effects';
 import Button from 'react-native-button';
+import Toast from '../componentes/Toast';
+import {
+    login,
+} from '../services/LoginService';
+import storage from '../services/Storage';
 
 class LoginScreen extends React.Component {
-    static navigationOptions = {
-        headerTitle: 'Login',
+    state = {
+        email: 'claudio',
+        senha: '123',
     };
 
-    login() {
-        const { navigation } = this.props;
-        navigation.replace('DrawerHome');
+    async handleLogin() {
+        const response = await login(this.state.email, this.state.senha);
+        if (response.status !== 200) {
+            Toast.show(response.mensagem);
+            return;
+        }
+        await storage.setUsuario(response);
+        this.props.navigation.replace('DrawerHome');
     }
 
     render() {
@@ -23,13 +34,15 @@ class LoginScreen extends React.Component {
                 <View style={{ flex: 1 }}>
                     <Text style={styles.textLogin}>App</Text>
                     <Isao
+                        value={this.state.email}
                         style={{ marginTop: 16 }}
-                        label='Usuário'
+                        label='E-mail'
                         activeColor='#000'
                         passiveColor='#000'
                         inputStyle={{ color: '#000' }}
                     />
                     <Isao
+                        value={this.state.senha}
                         style={{ marginTop: 16 }}
                         label='Senha'
                         activeColor='#000'
@@ -40,7 +53,7 @@ class LoginScreen extends React.Component {
                         activeOpacity={.7}
                         style={{ fontSize: 24, color: 'green', marginTop: 24 }}
                         styleDisabled={{ color: 'red' }}
-                        onPress={() => this.login()}>
+                        onPress={() => this.handleLogin()}>
                         Login
                     </Button>
                 </View>

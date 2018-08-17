@@ -22,14 +22,14 @@ module.exports = {
             jwt.verify(req.token, 'secretkey', (err) => {
                 if (err) {
                     response.message = 'Token de autenticação inválido.';
-                    res.status(403).send(response);
+                    res.status(403).json(response);
                 } else {
                     next();
                 }
             });
         } else {
             response.message = 'Nenhum token de autenticação encontrado.';
-            res.status(403).send(response);
+            res.status(403).json(response);
         }
     },
     createToken(usuario) {
