@@ -10,12 +10,15 @@ import {
     NavigationActions,
 } from 'react-navigation';
 import storage from '../services/Storage';
+import {
+    verificarToken,
+} from '../services/LoginService';
 import finiLogo from '../assets/fini.png';
 
 class StartupScreen extends React.Component {
     async componentDidMount() {
         const user = await storage.getUsuario();
-        if (user !== null) {
+        if (user !== null && (await verificarToken()).status === 200) {
             this.navigateTo('DrawerHome');
         } else {
             this.navigateTo('Login');
