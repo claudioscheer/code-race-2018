@@ -54,7 +54,7 @@ const AppNavigator = createStackNavigator(
     DrawerHome: { screen: DrawerNavigator },
   },
   {
-    initialRouteName: 'Login',
+    initialRouteName: 'DrawerHome',
     headerMode: 'none',
     mode: Platform.OS === 'ios' ? 'modal' : 'card',
   }

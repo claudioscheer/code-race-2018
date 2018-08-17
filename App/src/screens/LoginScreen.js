@@ -20,28 +20,33 @@ class LoginScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.textLogin}>App</Text>
-                <Isao
-                    style={{ marginTop: 16 }}
-                    label='Usuário'
-                    activeColor='#000'
-                    passiveColor='#000'
-                    inputStyle={{ color: '#000' }}
-                />
-                <Isao
-                    style={{ marginTop: 16 }}
-                    label='Senha'
-                    activeColor='#000'
-                    passiveColor='#000'
-                    inputStyle={{ color: '#000' }}
-                />
-                <Button
-                    activeOpacity={.7}
-                    style={{ fontSize: 24, color: 'green', paddingTop: 24 }}
-                    styleDisabled={{ color: 'red' }}
-                    onPress={() => this.login()}>
-                    Login
-                </Button>
+                <View style={{ flex: 1 }}>
+                    <Text style={styles.textLogin}>App</Text>
+                    <Isao
+                        style={{ marginTop: 16 }}
+                        label='Usuário'
+                        activeColor='#000'
+                        passiveColor='#000'
+                        inputStyle={{ color: '#000' }}
+                    />
+                    <Isao
+                        style={{ marginTop: 16 }}
+                        label='Senha'
+                        activeColor='#000'
+                        passiveColor='#000'
+                        inputStyle={{ color: '#000' }}
+                    />
+                    <Button
+                        activeOpacity={.7}
+                        style={{ fontSize: 24, color: 'green', marginTop: 24 }}
+                        styleDisabled={{ color: 'red' }}
+                        onPress={() => this.login()}>
+                        Login
+                    </Button>
+                </View>
+                <View>
+                    <Text style={{ textAlign: 'center' }}>Desenvolvido por Fini 8k, 2018</Text>
+                </View>
             </View>
         );
     }
@@ -50,6 +55,7 @@ class LoginScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         padding: 16,
+        flex: 1,
     },
     textLogin: {
         paddingTop: 32,
