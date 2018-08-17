@@ -51,7 +51,7 @@ const DrawerNavigator = createDrawerNavigator({
 const AppNavigator = createStackNavigator(
   {
     Login: { screen: LoginScreen },
-    Drawer: { screen: DrawerNavigator },
+    DrawerHome: { screen: DrawerNavigator },
   },
   {
     initialRouteName: 'Login',
