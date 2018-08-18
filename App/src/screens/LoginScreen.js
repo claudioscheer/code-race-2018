@@ -3,9 +3,9 @@ import {
     View,
     Text,
     StyleSheet,
+    Button
 } from 'react-native';
-import { Isao } from 'react-native-textinput-effects';
-import Button from 'react-native-button';
+import { Hoshi } from 'react-native-textinput-effects';
 import Toast from '../componentes/Toast';
 import {
     login,
@@ -14,8 +14,8 @@ import storage from '../services/Storage';
 
 class LoginScreen extends React.Component {
     state = {
-        email: 'claudio',
-        senha: '123',
+        email: '',
+        senha: '',
     };
 
     async handleLogin() {
@@ -33,29 +33,27 @@ class LoginScreen extends React.Component {
             <View style={styles.container}>
                 <View style={{ flex: 1 }}>
                     <Text style={styles.textLogin}>App</Text>
-                    <Isao
+
+                    <Hoshi
+                        label='E-mail'
+                        borderColor={'#b76c94'}
                         value={this.state.email}
                         style={{ marginTop: 16 }}
-                        label='E-mail'
-                        activeColor='#000'
-                        passiveColor='#000'
-                        inputStyle={{ color: '#000' }}
                     />
-                    <Isao
+                    <Hoshi
+                        label='Senha'
+                        borderColor={'#b76c94'}
                         value={this.state.senha}
                         style={{ marginTop: 16 }}
-                        label='Senha'
-                        activeColor='#000'
-                        passiveColor='#000'
-                        inputStyle={{ color: '#000' }}
                     />
-                    <Button
-                        activeOpacity={.7}
-                        style={{ fontSize: 24, color: 'green', marginTop: 24 }}
-                        styleDisabled={{ color: 'red' }}
-                        onPress={() => this.handleLogin()}>
-                        Login
-                    </Button>
+
+                    <View style={styles.buttonContainer}>
+                        <Button
+                            title="Entrar"
+                            color="green"
+                            onPress={() => this.handleLogin()} />
+                    </View>
+
                 </View>
                 <View>
                     <Text style={{ textAlign: 'center' }}>Desenvolvido por Fini 8k, 2018</Text>
@@ -76,6 +74,9 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#000',
     },
+    buttonContainer: {
+        marginTop : 24
+    }
 });
 
 export default LoginScreen;

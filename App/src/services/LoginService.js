@@ -1,9 +1,10 @@
 import storage from './Storage';
+import configuracoes from '../config'
 
 export async function login(email, senha) {
     try {
         let response = await fetch(
-            'http://172.20.156.128:3000/usuario/login', {
+            `${configuracoes.hostApi}/usuario/login`, {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',

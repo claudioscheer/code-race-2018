@@ -4,7 +4,6 @@ import {
     View,
     Text,
 } from 'react-native';
-import Button from 'react-native-button';
 import Toast from '../componentes/Toast';
 import {
     Divider,
