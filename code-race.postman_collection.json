@@ -1,0 +1,418 @@
+{
+	"info": {
+		"_postman_id": "65bd87f7-7335-4d30-a6c8-f944e29786ee",
+		"name": "code-race",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "insumos",
+			"item": [
+				{
+					"name": "find",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{localhost}}/insumos/find",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"insumos",
+								"find"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"data\":{\n\t\"id\": \"6\",\n    \"nome\": \"Pastagem Inverno\",\n    \"descricao\": \"Para tratar as vaca\",\n    \"valor\": 0.02\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{localhost}}/insumos/insert",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"insumos",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{localhost}}/insumos/update",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"insumos",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{localhost}}/insumos/delete/1",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"insumos",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "lotes",
+			"item": [
+				{
+					"name": "find",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{localhost}}/insumos/find",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"insumos",
+								"find"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"data\":{\n\t\"id\": \"1\",\n    \"nome\": \"Lote 01\",\n    \"animais\": [\n    \t{\n    \t\t\"id\": \"1\",\n    \t\t\"tipo\": \"bezeros(0-12)\",\n    \t\t\"quantidade\": 5,\n    \t\t\"recomendacoes\": []\n    \t}\n    \t],\n    \"idUsuario\": \"1\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{localhost}}/lotes/insert",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"lotes",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{localhost}}/insumos/update",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"insumos",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{localhost}}/lotes/delete/1",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"lotes",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "proprietarios",
+			"item": [
+				{
+					"name": "find",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{localhost}}/insumos/find",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"insumos",
+								"find"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{localhost}}/lotes/insert",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"lotes",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{localhost}}/proprietarios/update",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"proprietarios",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{localhost}}/lotes/delete/1",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"lotes",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "usuario",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{localhost}}/usuario/login",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"usuario",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{localhost}}/usuario/",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"usuario",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{localhost}}/usuario/find",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"usuario",
+								"find"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"data\": {\n\t\"id\": \"1\",\n    \"nome\": \"Batman\",\n    \"email\": \"bruce@magal.com\" ,\n    \"password\": \"123\" ,\n    \"tipo\": \"proprietario\",\n    \"telefone\": \"9999999\",\n    \"localidade\": \"Três de Maio\",\n    \"clienteServico\": false,\n    \"frequenciaEntrega\": \"mensal\",\n    \"atualizacoesTemporarias\": []\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{localhost}}/usuario/create",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"usuario",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verifyToken",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{localhost}}/usuario/verifyToken",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"usuario",
+								"verifyToken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{localhost}}/usuario/update",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"usuario",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{localhost}}/usuario/delete/",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"usuario",
+								"delete",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

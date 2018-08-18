@@ -22,7 +22,7 @@ module.exports = {
         });
     },
     delete(req, res) {
-        const filter = req.body.filter;
+        const filter = {id : req.params.id};
         provider.delete(CollectionName, filter).then(() => {
             res.status(200).json(retorno(200, true, 'Proprietario excluído com sucesso.'));
         }).catch((erro) => {
