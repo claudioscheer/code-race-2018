@@ -30,7 +30,7 @@ module.exports = {
         });
     },
     find(req, res) {
-        const filter = {id : req.params.id};
+        const filter = req.params.id ? {id : req.params.id}:{};
 
         provider.find(CollectionName, filter).then((insumos) => {
             res.json(retorno(200, true, '', insumos));

@@ -30,7 +30,8 @@ module.exports = {
         });
     },
     find(req, res) {
-        let filter = {id:req.params.id}
+        const filter = req.params.id ? {id : req.params.id}:{};
+        
         provider.find('usuarios', filter).then((usuarios) => {
             res.json(retorno(200, true, '', usuarios));
         }).catch((erro) => {
