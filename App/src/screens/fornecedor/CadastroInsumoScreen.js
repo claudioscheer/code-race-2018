@@ -11,7 +11,7 @@ import { Hoshi } from 'react-native-textinput-effects';
 import Toast from '../../componentes/Toast';
 import {
   inserirInsumo, atualizarInsumo,
-} from '../../services/UsuarioService';
+} from '../../services/InsumoService';
 import storage from '../../services/Storage';
 import Insumo from '../../models/insumo';
 import IconButton from '../../componentes/button/IconButton'
@@ -21,7 +21,6 @@ class CadastroInsumoScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
     headerTitle: `${navigation.state.params.metodo == 'ins' ? "Novo insumo" : "Atualização de insumo"}`,
     headerLeft: <IconButton iconName="arrow-back" iconColor="#000" onPress={() => { navigation.goBack(null) }} />,
-
   });
 
   state = {
