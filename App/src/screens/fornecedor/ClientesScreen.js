@@ -31,7 +31,7 @@ class ClientesScreen extends Component {
     }
 
     componentDidMount() {
-       this.buscarClientes()
+        this.buscarClientes()
     }
 
     async buscarClientes() {
@@ -55,7 +55,9 @@ class ClientesScreen extends Component {
                     renderItem={({ item }) =>
                         <ListItem
                             primaryText={item.nome}
-                            onPress={() => this.props.navigation.navigate('InformacoesCliente',{item})}
+                            onPress={() => this.props.navigation.navigate('RecomendacaoInsumo', {
+                                a:'asdf',
+                            })}
                         />
                     }
                 />

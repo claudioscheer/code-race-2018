@@ -19,8 +19,8 @@ class LoginScreen extends React.Component {
         header: null,
     };
     state = {
-        email: 'claudio@gmail.com',
-        senha: '123',
+        email: 'claudiooo',
+        senha: '1234',
     };
 
     alterarValor(campo, valor) {

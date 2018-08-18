@@ -7,7 +7,6 @@ module.exports = {
     insert(req, res) {
         const usuario = req.body.data;
         usuario.id = uuid();
-        usuario.tipo = 'proprietario';
         provider.insert('usuarios', usuario).then(() => {
             res.json(retorno(200, true, 'Usuário inserido com sucesso.', usuario));
         }).catch((erro) => {
@@ -18,7 +17,7 @@ module.exports = {
         const user = req.body.data;
         const { filter } = req.body;
 
-        delete user['_id']
+        delete user['_id'];
 
         provider.updateOne('usuarios', filter, user).then(() => {
             res.status(200).json(retorno(200, true, 'Usuário alterado com sucesso.'));

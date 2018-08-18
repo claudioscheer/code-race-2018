@@ -16,7 +16,7 @@ import logo from '../assets/magal.png';
 
 class StartupScreen extends React.Component {
     async componentDidMount() {
-        storage.clearAll()
+        // await storage.clearAll();
         const usuario = await storage.getUsuario();
         if (usuario !== null && (await verificarToken()).status === 200) {
             if (usuario.data.tipo === 'fornecedor') {

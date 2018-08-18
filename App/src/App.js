@@ -14,7 +14,8 @@ import RelatorioProprietarioScreen from './screens/proprietario/RelatorioProprie
 import StartupScreen from './screens/StartupScreen';
 import InsumosScreen from './screens/fornecedor/InsumosScreen';
 import CadastroInsumoScreen from './screens/fornecedor/CadastroInsumoScreen'
-import InformacoesClienteScreen from './screens/fornecedor/ClientesScreen'
+import InformacoesClienteScreen from './screens/fornecedor/ClientesScreen';
+import RecomendacaoInsumoScreen from './screens/fornecedor/RecomendacaoInsumoScreen';
 import Icon from './componentes/Icon';
 
 const LotesProprietarioStack = createStackNavigator({
@@ -72,7 +73,12 @@ const NavigatorFornecedor = createDrawerNavigator({
     screen: createStackNavigator({
       Insumos: { screen: InsumosScreen },
     }),
-  }
+  },
+  RecomendacaoInsumo: {
+    screen: createStackNavigator({
+      RecomendacaoInsumoa: { screen: RecomendacaoInsumoScreen },
+    }),
+  },
 }, {
     initialRouteName: 'Clientes',
   });
@@ -103,7 +109,7 @@ const AppNavigator = createStackNavigator(
     Fornecedor: { screen: NavigatorFornecedor },
     Insumos: { screen: InsumosScreen },
     CadastrarAtualizar: { screen: CadastroAtualizacaoInsumoStack },
-    ListagemCliente : { screen: InformacoesClientesStack}
+    ListagemCliente: { screen: InformacoesClientesStack }
   },
   {
     initialRouteName: 'Startup',

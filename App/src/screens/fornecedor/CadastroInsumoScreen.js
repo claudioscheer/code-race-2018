@@ -53,21 +53,21 @@ class CadastroInsumoScreen extends Component {
     let response;
     let insumo = new Insumo();
 
-    if(this.metodo === 'ins'){
+    if (this.metodo === 'ins') {
       insumo.nome = this.state.nome;
       insumo.descricao = this.state.descricao;
       insumo.valor = this.state.valor;
       response = await inserirInsumo(insumo);
-    }else{
-      let filter = {id : this.state.id}
+    } else {
+      let filter = { id: this.state.id }
       insumo = this.state;
-      response = await atualizarInsumo(filter,insumo);
+      response = await atualizarInsumo(filter, insumo);
     }
 
     if (response.status === 200) {
       Toast.show(response.mensagem);
       this.props.navigation.goBack(null);
-    }else{
+    } else {
       Toast.show("Não foi possível atualizar o insumo, tente novamente!");
     }
 

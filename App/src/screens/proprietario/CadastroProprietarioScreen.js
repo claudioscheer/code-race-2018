@@ -47,7 +47,7 @@ class CadastroProprietarioScreen extends React.Component {
         usuario.senha = this.state.senha;
         usuario.frequenciaEntrega = this.state.frequenciaEntrega;
         usuario.clienteServico = this.state.clienteServico;
-
+        usuario.tipo = 'proprietario';
         try {
             const response = await cadastrarUsuario(usuario);
             this.props.navigation.goBack(null);
