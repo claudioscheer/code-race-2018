@@ -3,7 +3,8 @@ import {
     View,
     Text,
     StyleSheet,
-    Button
+    Button,
+    Image,
 } from 'react-native';
 import { Hoshi } from 'react-native-textinput-effects';
 import Toast from '../componentes/Toast';
@@ -11,8 +12,12 @@ import {
     login,
 } from '../services/UsuarioService';
 import storage from '../services/Storage';
+import logo from '../assets/magal.png';
 
 class LoginScreen extends React.Component {
+    static navigationOptions = {
+        header: null,
+    };
     state = {
         email: 'claudio',
         senha: '1234',
@@ -36,7 +41,11 @@ class LoginScreen extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={{ flex: 1 }}>
-                    <Text style={styles.textLogin}>App</Text>
+                    <Image
+                        resizeMode="contain"
+                        style={{ height: 120, width: 120, alignSelf: "center", marginBottom: 16 }}
+                        source={logo}
+                    />
                     <Hoshi
                         label='E-mail'
                         borderColor={'#b76c94'}

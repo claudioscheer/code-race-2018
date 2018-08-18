@@ -8,7 +8,6 @@ import {
 } from 'react-navigation';
 import HomeProprietarioScreen from './screens/proprietario/HomeProprietarioScreen';
 import HomeFornecedorScreen from './screens/fornecedor/HomeFornecedorScreen';
-import NotificationScreen from './screens/NotificationScreen';
 import LoginScreen from './screens/LoginScreen';
 import CadastroProprietarioScreen from './screens/proprietario/CadastroProprietarioScreen';
 import StartupScreen from './screens/StartupScreen';
@@ -40,25 +39,14 @@ HomeFornecedorStack.navigationOptions = {
   ),
 };
 
-const NotificationStack = createStackNavigator({
-  Notification: { screen: NotificationScreen },
+const LoginStack = createStackNavigator({
+  Login: { screen: LoginScreen },
+  CadastroProprietario: { screen: CadastroProprietarioScreen },
 });
-NotificationStack.navigationOptions = {
-  drawerLabel: 'Notifications',
-  drawerIcon: ({ tintColor }) => (
-    <Icon
-      name="add"
-      color={tintColor}
-    />
-  ),
-};
 
 const NavigatorProprietario = createDrawerNavigator({
   Home: {
     screen: HomeProprietarioStack,
-  },
-  Notification: {
-    screen: NotificationStack,
   },
 }, {
     initialRouteName: 'Home',
@@ -68,9 +56,6 @@ const NavigatorFornecedor = createDrawerNavigator({
   Home: {
     screen: HomeFornecedorScreen,
   },
-  Notification: {
-    screen: NotificationStack,
-  },
 }, {
     initialRouteName: 'Home',
   });
@@ -78,19 +63,12 @@ const NavigatorFornecedor = createDrawerNavigator({
 const AppNavigator = createStackNavigator(
   {
     Startup: { screen: StartupScreen },
-    Login: { screen: LoginScreen },
-    CadastroProprietario: createStackNavigator({
-      CadastroProprietario: { screen: CadastroProprietarioScreen },
-    }, {
-        navigationOptions: {
-          headerTitle: 'Cadastro',
-        },
-      }),
+    Login: { screen: LoginStack },
     Proprietario: { screen: NavigatorProprietario },
     Fornecedor: { screen: NavigatorFornecedor },
   },
   {
-    initialRouteName: 'CadastroProprietario',
+    initialRouteName: 'Startup',
     headerMode: 'none',
     mode: Platform.OS === 'ios' ? 'modal' : 'card',
   }

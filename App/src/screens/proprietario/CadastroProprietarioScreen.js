@@ -16,6 +16,9 @@ import storage from '../../services/Storage';
 import Usuario from '../../models/usuario';
 
 class CadastroProprietarioScreen extends React.Component {
+    static navigationOptions = {
+        headerTitle: 'Cadastro',
+    };
     state = {
         nome: 'Claudio',
         localidade: 'Três de Maio - RS',

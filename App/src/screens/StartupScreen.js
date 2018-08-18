@@ -2,7 +2,6 @@ import React from 'react';
 import {
     View,
     StyleSheet,
-    Text,
     Image,
 } from 'react-native';
 import {
@@ -13,7 +12,7 @@ import storage from '../services/Storage';
 import {
     verificarToken,
 } from '../services/UsuarioService';
-import finiLogo from '../assets/fini.png';
+import logo from '../assets/magal.png';
 
 class StartupScreen extends React.Component {
     async componentDidMount() {
@@ -32,11 +31,13 @@ class StartupScreen extends React.Component {
     }
 
     navigateTo(routeName, params) {
-        const resetAction = StackActions.reset({
-            index: 0,
-            actions: [NavigationActions.navigate({ routeName, params })],
-        });
-        this.props.navigation.dispatch(resetAction);
+        setTimeout(() => {
+            const resetAction = StackActions.reset({
+                index: 0,
+                actions: [NavigationActions.navigate({ routeName, params })],
+            });
+            this.props.navigation.dispatch(resetAction);
+        }, 0);
     }
 
     render() {
@@ -44,10 +45,9 @@ class StartupScreen extends React.Component {
             <View style={styles.container}>
                 <Image
                     resizeMode="contain"
-                    style={{ height: 72 }}
-                    source={finiLogo}
+                    style={{ height: 180 }}
+                    source={logo}
                 />
-                <Text style={styles.textCarregando}>Carregando...</Text>
             </View>
         );
     }
@@ -55,15 +55,11 @@ class StartupScreen extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
+        backgroundColor: '#FFF',
         alignItems: 'center',
         justifyContent: 'center',
         flex: 1,
         flexDirection: 'column',
-    },
-    textCarregando: {
-        marginTop: 16,
-        fontSize: 16,
-        color: '#000',
     },
 });
 
