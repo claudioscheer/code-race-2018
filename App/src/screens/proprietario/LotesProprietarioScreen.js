@@ -26,24 +26,23 @@ class LotesProprietarioScreen extends React.Component {
 
     async componentWillMount() {
         const response = await getLotes();
-        // alert(JSON.stringify(response));
-        // if (response.status !== 200) {
-        //     Toast.show(response.mensagem);
-        //     return;
-        // }
-        // this.setState({ usuarios: response.data });
+        if (response.status !== 200) {
+            Toast.show(response.mensagem);
+            return;
+        }
+        this.setState({ lotes: response.data });
     }
 
     render() {
         return (
             <View>
                 <FlatList
-                    data={this.state.usuarios}
+                    data={this.state.lotes}
                     ItemSeparatorComponent={() => <Divider />}
-                    keyExtractor={item => item._id}
+                    keyExtractor={item => item.id}
                     renderItem={({ item }) =>
                         <ListItem
-                            primaryText={item.email}
+                            primaryText={item.nome}
                         />
                     }
                 />
