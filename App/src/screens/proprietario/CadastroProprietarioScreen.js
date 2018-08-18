@@ -6,16 +6,21 @@ import {
     Button
 } from 'react-native';
 import { Hoshi } from 'react-native-textinput-effects';
-import Toast from '../componentes/Toast';
+import Toast from '../../componentes/Toast';
 import {
     login,
-} from '../services/LoginService';
-import storage from '../services/Storage';
+} from '../../services/LoginService';
+import storage from '../../services/Storage';
 
-class LoginScreen extends React.Component {
+class CadastroProprietarioScreen extends React.Component {
     state = {
-        email: 'claudio',
-        senha: '1234',
+        nome: '',
+        localidade: '',
+        nomePropriedade: '',
+        email: '',
+        telefone: '',
+        senha: '',
+        confirmacaoSenha: '',
     };
 
     async handleLogin() {
@@ -49,17 +54,11 @@ class LoginScreen extends React.Component {
                         value={this.state.senha}
                         style={{ marginTop: 16 }}
                     />
-                    <View style={{ marginTop: 24 }}>
+                    <View style={styles.buttonContainer}>
                         <Button
                             title="Entrar"
                             color="green"
                             onPress={() => this.handleLogin()} />
-                    </View>
-                    <View style={{ marginTop: 24 }}>
-                        <Button
-                            title="Ainda não sou cadastrado"
-                            color="blue"
-                            onPress={() => this.props.navigation.navigate('CadastroProprietario')} />
                     </View>
                 </View>
                 <View>
@@ -81,6 +80,9 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#000',
     },
+    buttonContainer: {
+        marginTop: 24
+    }
 });
 
-export default LoginScreen;
+export default CadastroProprietarioScreen;

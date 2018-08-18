@@ -6,16 +6,31 @@ import {
   createStackNavigator,
   createDrawerNavigator,
 } from 'react-navigation';
-import HomeScreen from './screens/HomeScreen';
+import HomeProprietarioScreen from './screens/proprietario/HomeProprietarioScreen';
+import HomeFornecedorScreen from './screens/fornecedor/HomeFornecedorScreen';
 import NotificationScreen from './screens/NotificationScreen';
 import LoginScreen from './screens/LoginScreen';
+import CadastroProprietarioScreen from './screens/proprietario/CadastroProprietarioScreen';
 import StartupScreen from './screens/StartupScreen';
 import Icon from './componentes/Icon';
 
-const HomeStack = createStackNavigator({
-  Home: { screen: HomeScreen },
+const HomeProprietarioStack = createStackNavigator({
+  Home: { screen: HomeProprietarioScreen },
 });
-HomeStack.navigationOptions = {
+HomeProprietarioStack.navigationOptions = {
+  drawerLabel: 'Home',
+  drawerIcon: ({ tintColor }) => (
+    <Icon
+      name="flower"
+      color={tintColor}
+    />
+  ),
+};
+
+const HomeFornecedorStack = createStackNavigator({
+  Home: { screen: HomeFornecedorScreen },
+});
+HomeFornecedorStack.navigationOptions = {
   drawerLabel: 'Home',
   drawerIcon: ({ tintColor }) => (
     <Icon
@@ -40,7 +55,7 @@ NotificationStack.navigationOptions = {
 
 const NavigatorProprietario = createDrawerNavigator({
   Home: {
-    screen: HomeStack,
+    screen: HomeProprietarioStack,
   },
   Notification: {
     screen: NotificationStack,
@@ -51,7 +66,7 @@ const NavigatorProprietario = createDrawerNavigator({
 
 const NavigatorFornecedor = createDrawerNavigator({
   Home: {
-    screen: HomeStack,
+    screen: HomeFornecedorScreen,
   },
   Notification: {
     screen: NotificationStack,
@@ -64,6 +79,7 @@ const AppNavigator = createStackNavigator(
   {
     Startup: { screen: StartupScreen },
     Login: { screen: LoginScreen },
+    CadastroProprietario: { screen: CadastroProprietarioScreen },
     Proprietario: { screen: NavigatorProprietario },
     Fornecedor: { screen: NavigatorFornecedor },
   },

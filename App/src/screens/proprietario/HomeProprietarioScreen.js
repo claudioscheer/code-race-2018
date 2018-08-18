@@ -4,18 +4,18 @@ import {
     View,
     Text,
 } from 'react-native';
-import Toast from '../componentes/Toast';
+import Toast from '../../componentes/Toast';
 import {
     Divider,
     ListItem,
-} from '../componentes/list';
+} from '../../componentes/list';
 import {
     getUsuarios,
-} from '../services/HomeService';
+} from '../../services/HomeService';
 
-class HomeScreen extends React.Component {
+class HomeProprietarioScreen extends React.Component {
     static navigationOptions = {
-        headerTitle: 'Home',
+        headerTitle: 'Proprietário',
     };
     state = {
         usuarios: [],
@@ -48,4 +48,4 @@ class HomeScreen extends React.Component {
     }
 }
 
-export default HomeScreen;
+export default HomeProprietarioScreen;

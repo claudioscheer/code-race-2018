@@ -7,7 +7,7 @@ const USUARIO = `${DB_NAME}:USER`;
 
 class Storage {
     async clearAll() {
-        await this.removeTokenUsuario();
+        await this.deleteUsuario();
     }
 
     async setItem(key, value) {
