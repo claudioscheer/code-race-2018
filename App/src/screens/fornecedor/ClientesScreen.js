@@ -56,7 +56,7 @@ class ClientesScreen extends Component {
                         <ListItem
                             primaryText={item.nome}
                             onPress={() => this.props.navigation.navigate('RecomendacaoInsumo', {
-                                a:'asdf',
+                                item,
                             })}
                         />
                     }

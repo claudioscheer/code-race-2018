@@ -8,6 +8,10 @@ module.exports = {
     insert(req, res) {
         const lote = req.body.data;
         lote.id = uuid();
+        lote.animais = lote.animais.map(x => ({
+            ...x,
+            id: uuid(),
+        }));
         provider.insert(CollectionName, lote).then(() => {
             res.json(retorno(200, true, 'Lote inserido com sucesso.'));
         }).catch((erro) => {

@@ -17,6 +17,7 @@ import CadastroInsumoScreen from './screens/fornecedor/CadastroInsumoScreen'
 import InformacoesClienteScreen from './screens/fornecedor/ClientesScreen';
 import RecomendacaoInsumoScreen from './screens/fornecedor/RecomendacaoInsumoScreen';
 import Icon from './componentes/Icon';
+import ClientesScreen from './screens/fornecedor/ClientesScreen';
 
 const LotesProprietarioStack = createStackNavigator({
   Home: { screen: LotesProprietarioScreen },
@@ -43,18 +44,6 @@ RelatorioProprietarioStack.navigationOptions = {
     />
   ),
 };
-const HomeFornecedorStack = createStackNavigator({
-  Insumos: { screen: InsumosScreen },
-});
-HomeFornecedorStack.navigationOptions = {
-  drawerLabel: 'Insumos',
-  drawerIcon: ({ tintColor }) => (
-    <Icon
-      name="flower"
-      color={tintColor}
-    />
-  ),
-};
 
 const NavigatorProprietario = createDrawerNavigator({
   Relatorio: { screen: RelatorioProprietarioStack },
@@ -63,22 +52,36 @@ const NavigatorProprietario = createDrawerNavigator({
     initialRouteName: 'Relatorio',
   });
 
+
+const ClientesFornecedorStack = createStackNavigator({
+  Clientes: { screen: ClientesScreen },
+});
+ClientesFornecedorStack.navigationOptions = {
+  drawerLabel: 'Clientes',
+  drawerIcon: ({ tintColor }) => (
+    <Icon
+      name="home"
+      color={tintColor}
+    />
+  ),
+};
+
+const InsumosFornecedorStack = createStackNavigator({
+  Insumos: { screen: InsumosScreen },
+});
+InsumosFornecedorStack.navigationOptions = {
+  drawerLabel: 'Insumos',
+  drawerIcon: ({ tintColor }) => (
+    <Icon
+      name="home"
+      color={tintColor}
+    />
+  ),
+};
+
 const NavigatorFornecedor = createDrawerNavigator({
-  Clientes: {
-    screen: createStackNavigator({
-      Clientes: { screen: InformacoesClienteScreen },
-    }),
-  },
-  Insumos: {
-    screen: createStackNavigator({
-      Insumos: { screen: InsumosScreen },
-    }),
-  },
-  RecomendacaoInsumo: {
-    screen: createStackNavigator({
-      RecomendacaoInsumoa: { screen: RecomendacaoInsumoScreen },
-    }),
-  },
+  Clientes: { screen: ClientesFornecedorStack },
+  Insumos: { screen: InsumosFornecedorStack },
 }, {
     initialRouteName: 'Clientes',
   });
@@ -99,11 +102,16 @@ const InformacoesClientesStack = createStackNavigator({
   InformacoesCliente: { screen: InformacoesClienteScreen },
 });
 
+const RecomendacaoInsumoStack = createStackNavigator({
+  RecomendacaoInsumo: { screen: RecomendacaoInsumoScreen },
+});
+
 const AppNavigator = createStackNavigator(
   {
     Startup: { screen: StartupScreen },
     Login: { screen: LoginScreen },
     CadastroProprietario: { screen: CadastroProprietarioStack },
+    RecomendacaoInsumo: { screen: RecomendacaoInsumoStack },
     CadastroLoteProprietario: { screen: CadastroLoteProprietarioStack },
     Proprietario: { screen: NavigatorProprietario },
     Fornecedor: { screen: NavigatorFornecedor },

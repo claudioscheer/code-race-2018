@@ -21,7 +21,7 @@ router.get(
 router.get(
     '/clientes/',
     auth.verifyToken,
-    userController.findClientes
+    userController.findClientes,
 )
 
 // Salvar ou atualizar usuário.
