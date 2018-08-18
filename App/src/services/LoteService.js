@@ -41,3 +41,22 @@ export async function inserirLote(lote) {
         throw error;
     }
 };
+
+export async function excluirLote(filter) {
+    const usuario = await storage.getUsuario();
+    try {
+        let response = await fetch(
+            `${configuracoes.hostApi}/lotes/delete/${filter.id}`, {
+                method: 'DELETE',
+                headers: {
+                    Accept: 'application/json',
+                    Authorization: `Bearer ${usuario.token}`,
+                }
+            }
+        );
+        let responseJson = await response.json();
+        return responseJson;
+    } catch (error) {
+        throw error;
+    }
+};

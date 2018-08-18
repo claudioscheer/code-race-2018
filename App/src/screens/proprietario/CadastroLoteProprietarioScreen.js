@@ -27,14 +27,30 @@ class CadastroLoteProprietarioScreen extends React.Component {
         headerTitle: 'Cadastro de lote',
         headerLeft: <IconButton iconName="arrow-back" iconColor="#000" onPress={() => navigation.goBack(null)} />
     });
-    state = {
-        nome: 'Lote 01',
-        bezerros012: 0,
-        novilhas1224: 0,
-        novilhas2436: 0,
-        vacasSecas: 0,
-        vacasLactacao: 0,
-    };
+    constructor(props) {
+        super(props);
+        const item = props.navigation.getParam('item', null);
+        if (item !== null) {
+            this.itemId = item.id;
+            this.state = {
+                nome: item.nome,
+                bezerros012: item.animais[0].quantidade,
+                novilhas1224: item.animais[1].quantidade,
+                novilhas2436: item.animais[2].quantidade,
+                vacasSecas: item.animais[3].quantidade,
+                vacasLactacao: item.animais[4].quantidade,
+            };
+        } else {
+            this.state = {
+                nome: '',
+                bezerros012: 0,
+                novilhas1224: 0,
+                novilhas2436: 0,
+                vacasSecas: 0,
+                vacasLactacao: 0,
+            };
+        }
+    }
 
     async salvarLote() {
         const usuario = await storage.getUsuario();
@@ -79,7 +95,12 @@ class CadastroLoteProprietarioScreen extends React.Component {
     }
 
     render() {
-        const totalVacas = this.state.bezerros012 + this.state.novilhas1224 + this.state.novilhas2436 + this.state.vacasSecas + this.state.vacasLactacao;
+        const totalVacas =
+            parseInt(this.state.bezerros012) +
+            parseInt(this.state.novilhas1224) +
+            parseInt(this.state.novilhas2436) +
+            parseInt(this.state.vacasSecas) +
+            parseInt(this.state.vacasLactacao);
         return (
             <ScrollView style={styles.container}>
                 <Hoshi
@@ -90,6 +111,7 @@ class CadastroLoteProprietarioScreen extends React.Component {
                     style={{ marginTop: 8 }}
                 />
                 <Hoshi
+                    keyboardType="numeric"
                     label='Bezerros (0-12)'
                     borderColor='#b76c94'
                     value={this.state.bezerros012.toString()}
@@ -97,6 +119,7 @@ class CadastroLoteProprietarioScreen extends React.Component {
                     style={{ marginTop: 16 }}
                 />
                 <Hoshi
+                    keyboardType="numeric"
                     label='Novilhas (12-24)'
                     borderColor='#b76c94'
                     value={this.state.novilhas1224.toString()}
@@ -104,6 +127,7 @@ class CadastroLoteProprietarioScreen extends React.Component {
                     style={{ marginTop: 16 }}
                 />
                 <Hoshi
+                    keyboardType="numeric"
                     label='Novilhas (24-36)'
                     borderColor='#b76c94'
                     value={this.state.novilhas2436.toString()}
@@ -111,6 +135,7 @@ class CadastroLoteProprietarioScreen extends React.Component {
                     style={{ marginTop: 16 }}
                 />
                 <Hoshi
+                    keyboardType="numeric"
                     label='Vacas secas'
                     borderColor='#b76c94'
                     value={this.state.vacasSecas.toString()}
@@ -118,6 +143,7 @@ class CadastroLoteProprietarioScreen extends React.Component {
                     style={{ marginTop: 16 }}
                 />
                 <Hoshi
+                    keyboardType="numeric"
                     label='Vacas lactação'
                     borderColor='#b76c94'
                     value={this.state.vacasLactacao.toString()}
