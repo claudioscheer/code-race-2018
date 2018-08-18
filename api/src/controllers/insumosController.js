@@ -31,7 +31,7 @@ module.exports = {
     },
     find(req, res) {
         const filter = req.params.id ? {id : req.params.id}:{};
-
+        console.log(filter);
         provider.find(CollectionName, filter).then((insumos) => {
             res.json(retorno(200, true, '', insumos));
         }).catch((erro) => {

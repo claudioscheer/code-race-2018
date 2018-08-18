@@ -2,19 +2,17 @@ import storage from './Storage';
 import configuracoes from '../config';
 
 export async function buscarInsumo(filter) {
+    alert('entrou funcao');
     const usuario = await storage.getUsuario();
     try {
         let response = await fetch(
-            `${configuracoes.hostApi}/insumos/update`, {
+            `${configuracoes.hostApi}/insumos/find/${filter ? filter : "" }`, {
                 method: 'GET',
                 headers: {
                     Accept: 'application/json',
-                    'Content-Type': 'application/json',
                     Authorization: `Bearer ${usuario.token}`,
-                },
-                body: JSON.stringify({
-                    filter : filter,
-                }),
+                }
+            
             }
         );
         let responseJson = await response.json();

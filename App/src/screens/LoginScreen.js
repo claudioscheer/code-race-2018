@@ -19,9 +19,15 @@ class LoginScreen extends React.Component {
         header: null,
     };
     state = {
-        email: 'claudio',
-        senha: '1234',
+        email: '',
+        senha: '',
     };
+
+    alterarValor(campo, valor) {
+        const state = this.state;
+        state[campo] = valor;
+        this.setState({ ...state });
+    }
 
     async handleLogin() {
         const response = await login(this.state.email, this.state.senha);
@@ -51,12 +57,15 @@ class LoginScreen extends React.Component {
                         borderColor={'#b76c94'}
                         value={this.state.email}
                         style={{ marginTop: 16 }}
+                        onChangeText={valor => this.alterarValor('email', valor)}
+
                     />
                     <Hoshi
                         label='Senha'
                         borderColor={'#b76c94'}
                         value={this.state.senha}
                         style={{ marginTop: 16 }}
+                        onChangeText={valor => this.alterarValor('senha', valor)}
                     />
                     <View style={{ marginTop: 24 }}>
                         <Button

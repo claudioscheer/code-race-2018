@@ -11,8 +11,6 @@ router.post(
     userController.validateUser,
 );
 
-
-
 // Informações completas sobre o usuário.
 router.get(
     '/find/:id?',

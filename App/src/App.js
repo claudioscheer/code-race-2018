@@ -52,7 +52,9 @@ const NavigatorProprietario = createDrawerNavigator({
 
 const NavigatorFornecedor = createDrawerNavigator({
   Home: {
-    screen: InsumosScreen,
+    screen: createStackNavigator({
+      Insumos: { screen: InsumosScreen },
+    }),
   },
 }, {
     initialRouteName: 'Home',

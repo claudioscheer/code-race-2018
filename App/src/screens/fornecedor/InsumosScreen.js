@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import {
     View,
-    Text,
     StyleSheet,
-    Button,
-    ScrollView,
-    Picker
+    FlatList
 
 } from 'react-native';
 
 import IconButton from '../../componentes/button/IconButton'
+import ListItem from '../../componentes/list/ListItem'
 
 import { Hoshi } from 'react-native-textinput-effects';
 import Toast from '../../componentes/Toast';
@@ -19,21 +17,18 @@ import {
 } from '../../services/InsumoService';
 
 class InsumosScreen extends Component {
-    static navigationOptions = {
+    static navigationOptions = ({ navigation }) => ({
         headerTitle: 'Insumos',
-    };
+        headerLeft: <IconButton iconName="menu" iconColor="#000" onPress={() => navigation.openDrawer()} />
+    });
  
     state = {
         insumos: [],
     };
 
-    componentWillMount() {
-        this.buscarInsumos()
-    }
-
-    async buscarInsumos() {
-        const insumos = await buscarInsumo({});
-        this.setState({ insumos });
+    async componentWillMount() {
+        const response = await buscarInsumo();
+        this.setState({ insumos: response.data});
     }
 
     alterarValor(campo, valor) {
@@ -77,5 +72,11 @@ class InsumosScreen extends Component {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    }
+});
 
 export default InsumosScreen;

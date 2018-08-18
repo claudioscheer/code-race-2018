@@ -44,6 +44,8 @@ module.exports = {
             email,
             senha,
         };
+
+        console.log(query);
         provider.find('usuarios', query)
             .then((usuarios) => {
                 if (usuarios.length > 0) {
