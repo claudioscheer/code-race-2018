@@ -17,7 +17,7 @@ module.exports = {
     update(req, res) {
         const lote = req.body.data;
         const { filter } = req.body;
-
+        delete lote['_id']
         provider.updateOne(CollectionName, filter, lote).then(() => {
             res.status(200).json(retorno(200, true, 'Lote alterado com sucesso.'));
         }).catch((erro) => {

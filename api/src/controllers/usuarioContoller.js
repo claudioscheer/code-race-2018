@@ -18,6 +18,8 @@ module.exports = {
         const user = req.body.data;
         const { filter } = req.body;
 
+        delete user['_id']
+
         provider.updateOne('usuarios', filter, user).then(() => {
             res.status(200).json(retorno(200, true, 'Usuário alterado com sucesso.'));
         }).catch((erro) => {

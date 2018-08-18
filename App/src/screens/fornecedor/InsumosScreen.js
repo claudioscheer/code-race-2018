@@ -72,7 +72,7 @@ class InsumosScreen extends Component {
                     keyExtractor={item => item.id}
                     renderItem={({ item }) =>
                         <ListItem
-                            primaryText={item.nome}
+                            primaryText={item.nome + " - R$ " + item.valor}
                             right={
                                 <IconButton
                                     iconName='trash'

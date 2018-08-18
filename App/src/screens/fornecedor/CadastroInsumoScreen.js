@@ -11,7 +11,7 @@ import { Hoshi } from 'react-native-textinput-effects';
 import Toast from '../../componentes/Toast';
 import {
   inserirInsumo, atualizarInsumo,
-} from '../../services/InsumoService';
+} from '../../services/UsuarioService';
 import storage from '../../services/Storage';
 import Insumo from '../../models/insumo';
 import IconButton from '../../componentes/button/IconButton'
@@ -23,7 +23,6 @@ class CadastroInsumoScreen extends Component {
     headerLeft: <IconButton iconName="arrow-back" iconColor="#000" onPress={() => { navigation.goBack(null) }} />,
 
   });
-
 
   state = {
     id: '',
@@ -68,6 +67,8 @@ class CadastroInsumoScreen extends Component {
     if (response.status === 200) {
       Toast.show(response.mensagem);
       this.props.navigation.goBack(null);
+    }else{
+      Toast.show("Não foi possível atualizar o insumo, tente novamente!");
     }
 
   }
