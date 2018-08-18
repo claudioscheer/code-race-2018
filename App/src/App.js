@@ -79,12 +79,18 @@ const AppNavigator = createStackNavigator(
   {
     Startup: { screen: StartupScreen },
     Login: { screen: LoginScreen },
-    CadastroProprietario: { screen: CadastroProprietarioScreen },
+    CadastroProprietario: createStackNavigator({
+      CadastroProprietario: { screen: CadastroProprietarioScreen },
+    }, {
+        navigationOptions: {
+          headerTitle: 'Cadastro',
+        },
+      }),
     Proprietario: { screen: NavigatorProprietario },
     Fornecedor: { screen: NavigatorFornecedor },
   },
   {
-    initialRouteName: 'Startup',
+    initialRouteName: 'CadastroProprietario',
     headerMode: 'none',
     mode: Platform.OS === 'ios' ? 'modal' : 'card',
   }

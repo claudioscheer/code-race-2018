@@ -9,7 +9,7 @@ import { Hoshi } from 'react-native-textinput-effects';
 import Toast from '../componentes/Toast';
 import {
     login,
-} from '../services/LoginService';
+} from '../services/UsuarioService';
 import storage from '../services/Storage';
 
 class LoginScreen extends React.Component {

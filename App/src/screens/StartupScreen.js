@@ -12,7 +12,7 @@ import {
 import storage from '../services/Storage';
 import {
     verificarToken,
-} from '../services/LoginService';
+} from '../services/UsuarioService';
 import finiLogo from '../assets/fini.png';
 
 class StartupScreen extends React.Component {

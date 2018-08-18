@@ -3,75 +3,141 @@ import {
     View,
     Text,
     StyleSheet,
-    Button
+    Button,
+    ScrollView,
+    Picker,
 } from 'react-native';
 import { Hoshi } from 'react-native-textinput-effects';
 import Toast from '../../componentes/Toast';
 import {
-    login,
-} from '../../services/LoginService';
+    cadastrarUsuario,
+} from '../../services/UsuarioService';
 import storage from '../../services/Storage';
+import Usuario from '../../models/usuario';
 
 class CadastroProprietarioScreen extends React.Component {
     state = {
-        nome: '',
-        localidade: '',
-        nomePropriedade: '',
-        email: '',
-        telefone: '',
-        senha: '',
-        confirmacaoSenha: '',
+        nome: 'Claudio',
+        localidade: 'Três de Maio - RS',
+        nomePropriedade: 'MAGAL',
+        email: 'claudioscheer16@gmail.com',
+        telefone: '55 99961-3346',
+        senha: '123',
+        confirmacaoSenha: '123',
+        frequenciaEntrega: 'mensal',
+        clienteServico: 'sim',
     };
 
-    async handleLogin() {
-        const response = await login(this.state.email, this.state.senha);
-        if (response.status !== 200) {
-            Toast.show(response.mensagem);
+    async cadastrar() {
+        if (this.state.senha !== this.state.confirmacaoSenha) {
+            Toast.show('As senhas não são iguais.');
             return;
         }
-        await storage.setUsuario(response);
-        if (response.data.tipo === 'fornecedor') {
-            this.props.navigation.replace('Fornecedor');
-        } else if (response.data.tipo === 'proprietario') {
-            this.props.navigation.replace('Proprietario');
-        }
+        const usuario = new Usuario();
+        usuario.nome = this.state.nome;
+        usuario.localidade = this.state.localidade;
+        usuario.nomePropriedade = this.state.nomePropriedade;
+        usuario.email = this.state.email;
+        usuario.telefone = this.state.telefone;
+        usuario.senha = this.state.senha;
+        usuario.frequenciaEntrega = this.state.frequenciaEntrega;
+        usuario.clienteServico = this.state.clienteServico;
+
+        const response = await cadastrarUsuario(usuario);
+    }
+
+    alterarValor(campo, valor) {
+        const state = this.state;
+        state[campo] = valor;
+        this.setState({ ...state });
     }
 
     render() {
         return (
-            <View style={styles.container}>
-                <View style={{ flex: 1 }}>
-                    <Text style={styles.textLogin}>App</Text>
-                    <Hoshi
-                        label='E-mail'
-                        borderColor={'#b76c94'}
-                        value={this.state.email}
-                        style={{ marginTop: 16 }}
-                    />
-                    <Hoshi
-                        label='Senha'
-                        borderColor={'#b76c94'}
-                        value={this.state.senha}
-                        style={{ marginTop: 16 }}
-                    />
-                    <View style={styles.buttonContainer}>
-                        <Button
-                            title="Entrar"
-                            color="green"
-                            onPress={() => this.handleLogin()} />
-                    </View>
+            <ScrollView style={styles.container}>
+                <Hoshi
+                    label='Nome'
+                    borderColor='#b76c94'
+                    value={this.state.nome}
+                    onChangeText={valor => this.alterarValor('nome', valor)}
+                    style={{ marginTop: 8 }}
+                />
+                <Hoshi
+                    label='Localidade'
+                    borderColor='#b76c94'
+                    value={this.state.localidade}
+                    onChangeText={valor => this.alterarValor('localidade', valor)}
+                    style={{ marginTop: 16 }}
+                />
+                <Hoshi
+                    label='Nome propriedade'
+                    borderColor='#b76c94'
+                    value={this.state.nomePropriedade}
+                    onChangeText={valor => this.alterarValor('nomePropriedade', valor)}
+                    style={{ marginTop: 16 }}
+                />
+                <Hoshi
+                    label='E-mail'
+                    borderColor='#b76c94'
+                    value={this.state.email}
+                    onChangeText={valor => this.alterarValor('email', valor)}
+                    style={{ marginTop: 16 }}
+                />
+                <Hoshi
+                    label='Telefone'
+                    borderColor='#b76c94'
+                    value={this.state.telefone}
+                    onChangeText={valor => this.alterarValor('telefone', valor)}
+                    style={{ marginTop: 16 }}
+                />
+                <Hoshi
+                    label='Senha'
+                    borderColor='#b76c94'
+                    value={this.state.senha}
+                    onChangeText={valor => this.alterarValor('senha', valor)}
+                    style={{ marginTop: 16 }}
+                />
+                <Hoshi
+                    label='Confirmação de senha'
+                    borderColor='#b76c94'
+                    value={this.state.confirmacaoSenha}
+                    onChangeText={valor => this.alterarValor('confirmacaoSenha', valor)}
+                    style={{ marginTop: 16 }}
+                />
+                <View style={{ marginTop: 16 }}>
+                    <Text>Deseja contratar o serviço do veterinário?</Text>
+                    <Picker
+                        selectedValue={this.state.clienteServico}
+                        onValueChange={(itemValue, itemIndex) => this.setState({ clienteServico: itemValue })}>
+                        <Picker.Item label="Sim" value="sim" />
+                        <Picker.Item label="Não" value="nao" />
+                    </Picker>
                 </View>
-                <View>
-                    <Text style={{ textAlign: 'center' }}>Desenvolvido por Fini 8k, 2018</Text>
+                <View style={{ marginTop: 16 }}>
+                    <Text>Frequência de entregas</Text>
+                    <Picker
+                        selectedValue={this.state.frequenciaEntrega}
+                        onValueChange={(itemValue, itemIndex) => this.setState({ frequenciaEntrega: itemValue })}>
+                        <Picker.Item label="Quinzenal" value="quinzenal" />
+                        <Picker.Item label="Mensal" value="mensal" />
+                        <Picker.Item label="Anual" value="anual" />
+                    </Picker>
                 </View>
-            </View>
+                <View style={styles.buttonContainer}>
+                    <Button
+                        title="Cadastrar-se"
+                        color="green"
+                        onPress={() => this.cadastrar()} />
+                </View>
+            </ScrollView>
         );
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-        padding: 16,
+        paddingLeft: 16,
+        paddingRight: 16,
         flex: 1,
     },
     textLogin: {
@@ -81,8 +147,20 @@ const styles = StyleSheet.create({
         color: '#000',
     },
     buttonContainer: {
+        paddingBottom: 16,
         marginTop: 24
-    }
+    },
+    selectIOS: {
+        fontSize: 16,
+        paddingTop: 13,
+        paddingHorizontal: 10,
+        paddingBottom: 12,
+        borderWidth: 1,
+        borderColor: 'gray',
+        borderRadius: 4,
+        backgroundColor: 'white',
+        color: 'black',
+    },
 });
 
 export default CadastroProprietarioScreen;
