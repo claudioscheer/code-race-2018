@@ -32,6 +32,10 @@ class InsumosScreen extends Component {
         this.buscarInsumos()
     }
 
+    goBack= () => {
+        alert('voltou');
+    }
+
     async buscarInsumos(){
         const response = await buscarInsumo();
         this.setState({ insumos: response.data});
