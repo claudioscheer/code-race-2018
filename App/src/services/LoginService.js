@@ -1,5 +1,5 @@
 import storage from './Storage';
-import configuracoes from '../config'
+import configuracoes from '../config';
 
 export async function login(email, senha) {
     try {
@@ -27,7 +27,7 @@ export async function verificarToken() {
     const usuario = await storage.getUsuario();
     try {
         let response = await fetch(
-            'http://172.20.156.128:3000/usuario/verifyToken', {
+            `${configuracoes.hostApi}/usuario/verifyToken`, {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',

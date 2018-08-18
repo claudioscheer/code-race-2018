@@ -28,7 +28,7 @@ router.post(
 // Salvar ou atualizar usuário.
 router.post(
     '/create',
-    auth.verifyToken,
+    // auth.verifyToken,
     userController.insert,
 );
 

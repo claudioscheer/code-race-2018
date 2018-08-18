@@ -1,3 +1,3 @@
-export const configuracoes = {
-    hostApi: "http://localhost:3000"
-}
+export default configuracoes = {
+    hostApi: "http://192.168.43.129:3000"
+};
