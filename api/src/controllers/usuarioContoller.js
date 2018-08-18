@@ -8,7 +8,7 @@ module.exports = {
         provider.insert('usuarios', usuario).then(() => {
             res.json(retorno(200, true, 'Usuário inserido com sucesso.',usuario));
         }).catch((erro) => {
-            res.status(999).json(retorno(999, false, `Não foi possível inserir o usuário. ${erro}`));
+            res.status(401).json(retorno(999, false, `Não foi possível inserir o usuário. ${erro}`));
         });
     },
     updateOne(req, res) {
@@ -18,7 +18,7 @@ module.exports = {
         provider.updateOne('usuarios', filter, user).then(() => {
             res.status(200).json(retorno(200, true, 'Usuário alterado com sucesso.'));
         }).catch((erro) => {
-            res.status(999).json(retorno(999, false, `Não foi possível alterar o usuário. ${erro}`));
+            res.status(401).json(retorno(999, false, `Não foi possível alterar o usuário. ${erro}`));
         });
     },
     delete(req, res) {
@@ -26,14 +26,14 @@ module.exports = {
         provider.delete('usuarios', filter).then(() => {
             res.status(200).json(retorno(200, true, 'Usuário excluído com sucesso.'));
         }).catch((erro) => {
-            res.status(999).json(retorno(999, false, `Não foi possível excluir o usuário. ${erro}`));
+            res.status(401).json(retorno(999, false, `Não foi possível excluir o usuário. ${erro}`));
         });
     },
     find(req, res) {
         provider.find('usuarios', {}).then((usuarios) => {
             res.json(retorno(200, true, '', usuarios));
         }).catch((erro) => {
-            res.status(999).json(retorno(999, false, `Não foi possível consultar os usuários. ${erro}`));
+            res.status(401).json(retorno(999, false, `Não foi possível consultar os usuários. ${erro}`));
         });
     },
     validateUser(req, res) {
