@@ -33,13 +33,13 @@ class RelatorioProprietarioScreen extends React.Component {
         return (
             <Swiper style={styles.wrapper} showsButtons>
                 <View style={styles.slide1}>
-                    <Text style={styles.text}>Hello Swiper</Text>
+                    <Text style={styles.text}>Lote 01 - R$ 48.00</Text>
                 </View>
                 <View style={styles.slide2}>
-                    <Text style={styles.text}>Beautiful</Text>
+                    <Text style={styles.text}>Lote 02 -  R$ 75.00</Text>
                 </View>
                 <View style={styles.slide3}>
-                    <Text style={styles.text}>And simple</Text>
+                    <Text style={styles.text}>Lote 03 - R$ 340.00</Text>
                 </View>
             </Swiper>
         );

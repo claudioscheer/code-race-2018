@@ -20,6 +20,9 @@ import Icon from './componentes/Icon';
 import ClientesScreen from './screens/fornecedor/ClientesScreen';
 import RecomendacaoInsumoScreen from './screens/fornecedor/RecomendacaoInsumoScreen';
 
+console.disableYellowBox = true;
+
+
 const LotesProprietarioStack = createStackNavigator({
   Home: { screen: LotesProprietarioScreen },
 });
