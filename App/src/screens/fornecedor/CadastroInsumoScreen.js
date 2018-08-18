@@ -10,8 +10,8 @@ import {
 import { Hoshi } from 'react-native-textinput-effects';
 import Toast from '../../componentes/Toast';
 import {
-  inserir, inserirInsumo,
-} from '../../services/InsumoService';
+  inserirInsumo, atualizarInsumo,
+} from '../../services/UsuarioService';
 import storage from '../../services/Storage';
 import Insumo from '../../models/insumo';
 import IconButton from '../../componentes/button/IconButton'
@@ -20,30 +20,25 @@ class CadastroInsumoScreen extends Component {
 
   static navigationOptions = ({ navigation }) => ({
     headerTitle: `${navigation.state.params.metodo == 'ins' ? "Novo insumo" : "Atualização de insumo"}`,
-    headerLeft: <IconButton iconName="arrow-back" iconColor="#000" onPress={() => navigation.goBack(null)} />,
+    headerLeft: <IconButton iconName="arrow-back" iconColor="#000" onPress={() => { navigation.goBack(null) }} />,
 
   });
 
-  constructor(props) {
-
-    super(props);
-    this.state = {
-      id: '',
-      nome: '',
-      descricao: '',
-      valor: 0,
-    }
-
-    let metodo = this.props.navigation.state.params.metodo//upd ou ins
-
-    navigationOptions = {
-      headerTitle: '',
-    };
-
-
+  state = {
+    id: '',
+    nome: '',
+    descricao: '',
+    valor: 0,
   }
 
+  metodo = 'ins'
 
+  componentWillMount() {
+    this.metodo = this.props.navigation.state.params.metodo//upd ou ins
+    if (this.metodo === 'upd') {
+      this.setState(this.props.navigation.state.params.item)
+    }
+  }
 
   async cadastrar() {
 
@@ -55,16 +50,25 @@ class CadastroInsumoScreen extends Component {
       return;
     }
 
-    const insumo = new Insumo();
-    insumo.nome = this.state.nome;
-    insumo.descricao = this.state.descricao;
-    insumo.valor = this.state.valor;
+    let response;
+    let insumo = new Insumo();
 
-    const response = await inserirInsumo(insumo);
+    if(this.metodo === 'ins'){
+      insumo.nome = this.state.nome;
+      insumo.descricao = this.state.descricao;
+      insumo.valor = this.state.valor;
+      response = await inserirInsumo(insumo);
+    }else{
+      let filter = {id : this.state.id}
+      insumo = this.state;
+      response = await atualizarInsumo(filter,insumo);
+    }
 
-    if(response.status === 200){
+    if (response.status === 200) {
       Toast.show(response.mensagem);
       this.props.navigation.goBack(null);
+    }else{
+      Toast.show("Não foi possível atualizar o insumo, tente novamente!");
     }
 
   }
