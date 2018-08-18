@@ -10,6 +10,7 @@ import {
     ListItem,
 } from '../../componentes/list';
 import {
+    excluirLote,
     getLotes,
 } from '../../services/LoteService';
 import IconButton from '../../componentes/button/IconButton';
@@ -25,12 +26,26 @@ class LotesProprietarioScreen extends React.Component {
     };
 
     async componentWillMount() {
+        await this.buscarLotes();
+    }
+
+    async buscarLotes() {
         const response = await getLotes();
         if (response.status !== 200) {
             Toast.show(response.mensagem);
             return;
         }
         this.setState({ lotes: response.data });
+    }
+
+    async excluir(item) {
+        let filter = { id: item.id }
+        const response = await excluirLote(filter)
+
+        if (response.status === 200) {
+            Toast.show(response.mensagem);
+            await this.buscarLotes();
+        }
     }
 
     render() {
@@ -43,6 +58,16 @@ class LotesProprietarioScreen extends React.Component {
                     renderItem={({ item }) =>
                         <ListItem
                             primaryText={item.nome}
+                            right={
+                                <IconButton
+                                    iconName='trash'
+                                    iconColor='#00aced'
+                                    onPress={() => this.excluir(item)}
+                                />
+                            }
+                            onPress={() => this.props.navigation.navigate('CadastroLoteProprietario', {
+                                item,
+                            })}
                         />
                     }
                 />

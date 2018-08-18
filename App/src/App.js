@@ -10,25 +10,38 @@ import LotesProprietarioScreen from './screens/proprietario/LotesProprietarioScr
 import LoginScreen from './screens/LoginScreen';
 import CadastroProprietarioScreen from './screens/proprietario/CadastroProprietarioScreen';
 import CadastroLoteProprietarioScreen from './screens/proprietario/CadastroLoteProprietarioScreen';
+import RelatorioProprietarioScreen from './screens/proprietario/RelatorioProprietarioScreen';
 import StartupScreen from './screens/StartupScreen';
 import InsumosScreen from './screens/fornecedor/InsumosScreen';
 import CadastroInsumoScreen from './screens/fornecedor/CadastroInsumoScreen'
 import InformacoesClienteScreen from './screens/fornecedor/ClientesScreen'
 import Icon from './componentes/Icon';
 
-const HomeProprietarioStack = createStackNavigator({
+const LotesProprietarioStack = createStackNavigator({
   Home: { screen: LotesProprietarioScreen },
 });
-HomeProprietarioStack.navigationOptions = {
-  drawerLabel: 'Home',
+LotesProprietarioStack.navigationOptions = {
+  drawerLabel: 'Lotes',
   drawerIcon: ({ tintColor }) => (
     <Icon
-      name="flower"
+      name="home"
       color={tintColor}
     />
   ),
 };
 
+const RelatorioProprietarioStack = createStackNavigator({
+  Insumos: { screen: RelatorioProprietarioScreen },
+});
+RelatorioProprietarioStack.navigationOptions = {
+  drawerLabel: 'Relatório',
+  drawerIcon: ({ tintColor }) => (
+    <Icon
+      name="list"
+      color={tintColor}
+    />
+  ),
+};
 const HomeFornecedorStack = createStackNavigator({
   Insumos: { screen: InsumosScreen },
 });
@@ -43,11 +56,10 @@ HomeFornecedorStack.navigationOptions = {
 };
 
 const NavigatorProprietario = createDrawerNavigator({
-  Home: {
-    screen: HomeProprietarioStack,
-  },
+  Relatorio: { screen: RelatorioProprietarioStack },
+  Lotes: { screen: LotesProprietarioStack },
 }, {
-    initialRouteName: 'Home',
+    initialRouteName: 'Relatorio',
   });
 
 const NavigatorFornecedor = createDrawerNavigator({
