@@ -14,8 +14,8 @@ import storage from '../services/Storage';
 
 class LoginScreen extends React.Component {
     state = {
-        email: '',
-        senha: '',
+        email: 'claudio',
+        senha: '1234',
     };
 
     async handleLogin() {
@@ -24,8 +24,13 @@ class LoginScreen extends React.Component {
             Toast.show(response.mensagem);
             return;
         }
+        alert(JSON.stringify(response))
         await storage.setUsuario(response);
-        this.props.navigation.replace('DrawerHome');
+        if (response.data.tipo === 'fornecedor') {
+            this.props.navigation.replace('Fornecedor');
+        } else if (response.data.tipo === 'proprietario') {
+            this.props.navigation.replace('Proprietario');
+        }
     }
 
     render() {
@@ -33,7 +38,6 @@ class LoginScreen extends React.Component {
             <View style={styles.container}>
                 <View style={{ flex: 1 }}>
                     <Text style={styles.textLogin}>App</Text>
-
                     <Hoshi
                         label='E-mail'
                         borderColor={'#b76c94'}
@@ -46,14 +50,12 @@ class LoginScreen extends React.Component {
                         value={this.state.senha}
                         style={{ marginTop: 16 }}
                     />
-
                     <View style={styles.buttonContainer}>
                         <Button
                             title="Entrar"
                             color="green"
                             onPress={() => this.handleLogin()} />
                     </View>
-
                 </View>
                 <View>
                     <Text style={{ textAlign: 'center' }}>Desenvolvido por Fini 8k, 2018</Text>
@@ -75,7 +77,7 @@ const styles = StyleSheet.create({
         color: '#000',
     },
     buttonContainer: {
-        marginTop : 24
+        marginTop: 24
     }
 });
 

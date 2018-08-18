@@ -17,9 +17,15 @@ import finiLogo from '../assets/fini.png';
 
 class StartupScreen extends React.Component {
     async componentDidMount() {
-        const user = await storage.getUsuario();
-        if (user !== null && (await verificarToken()).status === 200) {
-            this.navigateTo('DrawerHome');
+        const usuario = await storage.getUsuario();
+        if (usuario !== null && (await verificarToken()).status === 200) {
+            if (usuario.data.tipo === 'fornecedor') {
+                this.navigateTo('Fornecedor');
+            } else if (usuario.data.tipo === 'proprietario') {
+                this.navigateTo('Proprietario');
+            } else {
+                this.navigateTo('Login');
+            }
         } else {
             this.navigateTo('Login');
         }

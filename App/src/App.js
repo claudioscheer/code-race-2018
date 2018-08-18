@@ -38,7 +38,18 @@ NotificationStack.navigationOptions = {
   ),
 };
 
-const DrawerNavigator = createDrawerNavigator({
+const NavigatorProprietario = createDrawerNavigator({
+  Home: {
+    screen: HomeStack,
+  },
+  Notification: {
+    screen: NotificationStack,
+  },
+}, {
+    initialRouteName: 'Home',
+  });
+
+const NavigatorFornecedor = createDrawerNavigator({
   Home: {
     screen: HomeStack,
   },
@@ -53,7 +64,8 @@ const AppNavigator = createStackNavigator(
   {
     Startup: { screen: StartupScreen },
     Login: { screen: LoginScreen },
-    DrawerHome: { screen: DrawerNavigator },
+    Proprietario: { screen: NavigatorProprietario },
+    Fornecedor: { screen: NavigatorFornecedor },
   },
   {
     initialRouteName: 'Startup',
