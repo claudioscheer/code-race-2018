@@ -42,3 +42,21 @@ export async function verificarToken() {
         throw error;
     }
 };
+
+export async function cadastrarUsuario(usuario) {
+    try {
+        let response = await fetch(
+            `${configuracoes.hostApi}/usuario/verifyToken`, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            }
+        );
+        let responseJson = await response.json();
+        return responseJson;
+    } catch (error) {
+        throw error;
+    }
+};
