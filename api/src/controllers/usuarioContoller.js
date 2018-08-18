@@ -6,7 +6,7 @@ module.exports = {
     insert(req, res) {
         const usuario = req.body.data;
         provider.insert('usuarios', usuario).then(() => {
-            res.json(retorno(200, true, 'Usuário inserido com sucesso.',usuario));
+            res.json(retorno(200, true, 'Usuário inserido com sucesso.', usuario));
         }).catch((erro) => {
             res.status(401).json(retorno(999, false, `Não foi possível inserir o usuário. ${erro}`));
         });
@@ -30,8 +30,8 @@ module.exports = {
         });
     },
     find(req, res) {
-        const filter = req.params.id ? {id : req.params.id}:{};
-        
+        const filter = req.params.id ? { id: req.params.id } : {};
+
         provider.find('usuarios', filter).then((usuarios) => {
             res.json(retorno(200, true, '', usuarios));
         }).catch((erro) => {

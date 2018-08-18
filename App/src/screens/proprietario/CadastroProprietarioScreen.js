@@ -14,11 +14,13 @@ import {
 } from '../../services/UsuarioService';
 import storage from '../../services/Storage';
 import Usuario from '../../models/usuario';
+import IconButton from '../../componentes/button/IconButton';
 
 class CadastroProprietarioScreen extends React.Component {
-    static navigationOptions = {
+    static navigationOptions = ({ navigation }) => ({
         headerTitle: 'Cadastro',
-    };
+        headerLeft: <IconButton iconName="arrow-back" iconColor="#000" onPress={() => navigation.goBack(null)} />
+    });
     state = {
         nome: 'Claudio',
         localidade: 'Três de Maio - RS',
@@ -46,7 +48,13 @@ class CadastroProprietarioScreen extends React.Component {
         usuario.frequenciaEntrega = this.state.frequenciaEntrega;
         usuario.clienteServico = this.state.clienteServico;
 
-        const response = await cadastrarUsuario(usuario);
+        try {
+            const response = await cadastrarUsuario(usuario);
+            this.props.navigation.goBack(null);
+            Toast.show(response.mensagem);
+        } catch (error) {
+            Toast.show(error.mensagem);
+        }
     }
 
     alterarValor(campo, valor) {

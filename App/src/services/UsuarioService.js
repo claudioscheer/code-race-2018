@@ -46,12 +46,15 @@ export async function verificarToken() {
 export async function cadastrarUsuario(usuario) {
     try {
         let response = await fetch(
-            `${configuracoes.hostApi}/usuario/verifyToken`, {
+            `${configuracoes.hostApi}/usuario/create`, {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
                 },
+                body: JSON.stringify({
+                    data: usuario,
+                }),
             }
         );
         let responseJson = await response.json();
