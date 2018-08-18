@@ -21,24 +21,29 @@ class InsumosScreen extends Component {
     static navigationOptions = ({ navigation }) => ({
         headerTitle: 'Insumos',
         headerLeft: <IconButton iconName="menu" iconColor="#000" onPress={() => navigation.openDrawer()} />,
-        headerRight: <IconButton iconName="add" iconColor="#000" onPress={() => navigation.navigate('CadastrarAtualizar',{metodo : 'ins'})} />
+        headerRight: <IconButton iconName="add" iconColor="#000" onPress={() => navigation.navigate('CadastrarAtualizar', { metodo: 'ins' })} />
     });
- 
+
     state = {
-        insumos: [],
+        insumos: []
     };
 
     componentWillMount() {
         this.buscarInsumos()
     }
 
-    goBack= () => {
+    componentDidMount() {
+       this.buscarInsumos()
+        
+    }
+
+    goBack = () => {
         alert('voltou');
     }
 
-    async buscarInsumos(){
+    async buscarInsumos() {
         const response = await buscarInsumo();
-        this.setState({ insumos: response.data});
+        this.setState({ insumos: response.data });
     }
 
     alterarValor(campo, valor) {
@@ -47,13 +52,14 @@ class InsumosScreen extends Component {
         this.setState({ ...state });
     }
 
-    async excluir(item){
-        let filter = {id : item.id}
+    async excluir(item) {
+        let filter = { id: item.id }
         const response = await excluirInsumo(filter)
-        
-        if(response.status === 200){
+
+        if (response.status === 200) {
             Toast.show(response.mensagem);
             this.buscarInsumos();
+
         }
     }
 
@@ -71,10 +77,10 @@ class InsumosScreen extends Component {
                                 <IconButton
                                     iconName='trash'
                                     iconColor='#00aced'
-                                    onPress={()=> this.excluir(item)}
-                                    />
+                                    onPress={() => this.excluir(item)}
+                                />
                             }
-                            onPress={() => this.props.navigation.navigate('')}
+                            onPress={() => this.props.navigation.navigate('CadastrarAtualizar',{metodo : 'upd', item})}
                         />
                     }
                 />

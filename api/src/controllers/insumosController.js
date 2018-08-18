@@ -16,7 +16,7 @@ module.exports = {
     },
     update(req, res) {
         const insumo = req.body.data;
-        const { filter } = req.body;
+        const filter  = {id : req.params.id};
 
         provider.updateOne(CollectionName, filter, insumo).then(() => {
             res.status(200).json(retorno(200, true, 'insumo alterado com sucesso.'));
