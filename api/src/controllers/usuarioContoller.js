@@ -6,7 +6,7 @@ module.exports = {
     insert(req, res) {
         const usuario = req.body.data;
         provider.insert('usuarios', usuario).then(() => {
-            res.json(retorno(200, true, 'Usuário inserido com sucesso.'));
+            res.json(retorno(200, true, 'Usuário inserido com sucesso.',usuario));
         }).catch((erro) => {
             res.status(999).json(retorno(999, false, `Não foi possível inserir o usuário. ${erro}`));
         });
