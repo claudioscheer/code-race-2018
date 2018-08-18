@@ -8,6 +8,7 @@ import {
 
 import IconButton from '../../componentes/button/IconButton'
 import ListItem from '../../componentes/list/ListItem'
+import Divider from '../../componentes/list/Divider'
 
 import { Hoshi } from 'react-native-textinput-effects';
 import Toast from '../../componentes/Toast';

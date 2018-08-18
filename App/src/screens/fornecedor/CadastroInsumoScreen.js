@@ -15,6 +15,7 @@ import {
 import storage from '../../services/Storage';
 import Insumo from '../../models/insumo';
 import IconButton from '../../componentes/button/IconButton'
+import uuid from 'react-native-uuid'
 
 class CadastroInsumoScreen extends Component {
 
@@ -56,6 +57,7 @@ class CadastroInsumoScreen extends Component {
     }
 
     const insumo = new Insumo();
+    insumo.id = uuid.v1();
     insumo.nome = this.state.nome;
     insumo.descricao = this.state.descricao;
     insumo.valor = this.state.valor;
