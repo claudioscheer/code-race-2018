@@ -12,11 +12,13 @@ import {
 import {
     getUsuarios,
 } from '../../services/HomeService';
+import IconButton from '../../componentes/button/IconButton';
 
 class HomeProprietarioScreen extends React.Component {
-    static navigationOptions = {
+    static navigationOptions = ({ navigation }) => ({
         headerTitle: 'Proprietário',
-    };
+        headerLeft: <IconButton iconName="menu" iconColor="#000" onPress={() => navigation.goBack(null)} />
+    });
     state = {
         usuarios: [],
     };

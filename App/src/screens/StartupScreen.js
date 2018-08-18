@@ -36,7 +36,7 @@ class StartupScreen extends React.Component {
                 index: 0,
                 actions: [NavigationActions.navigate({ routeName, params })],
             });
-            this.props.navigation.dispatch(resetAction);
+            this.props.navigation.replace(resetAction);
         }, 0);
     }
 

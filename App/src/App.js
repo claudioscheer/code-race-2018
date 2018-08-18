@@ -39,11 +39,6 @@ HomeFornecedorStack.navigationOptions = {
   ),
 };
 
-const LoginStack = createStackNavigator({
-  Login: { screen: LoginScreen },
-  CadastroProprietario: { screen: CadastroProprietarioScreen },
-});
-
 const NavigatorProprietario = createDrawerNavigator({
   Home: {
     screen: HomeProprietarioStack,
@@ -60,10 +55,15 @@ const NavigatorFornecedor = createDrawerNavigator({
     initialRouteName: 'Home',
   });
 
+const CadastroProprietarioStack = createStackNavigator({
+  CadastroProprietario: { screen: CadastroProprietarioScreen },
+});
+
 const AppNavigator = createStackNavigator(
   {
     Startup: { screen: StartupScreen },
-    Login: { screen: LoginStack },
+    Login: { screen: LoginScreen },
+    CadastroProprietario: { screen: CadastroProprietarioStack },
     Proprietario: { screen: NavigatorProprietario },
     Fornecedor: { screen: NavigatorFornecedor },
   },
