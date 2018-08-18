@@ -22,7 +22,7 @@ module.exports = {
         });
     },
     delete(req, res) {
-        const { filter } = req.body;
+        const filter = {id : req.params.id};
         provider.delete('usuarios', filter).then(() => {
             res.status(200).json(retorno(200, true, 'Usuário excluído com sucesso.'));
         }).catch((erro) => {
