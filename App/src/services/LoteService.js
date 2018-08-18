@@ -4,7 +4,7 @@ export async function getLotes() {
     const usuario = await storage.getUsuario();
     try {
         let response = await fetch(
-            `${configuracoes.hostApi}/lotes/find/${usuario.data._id}`, {
+            `${configuracoes.hostApi}/lotes/find/${usuario.data.id}`, {
                 method: 'GET',
                 headers: {
                     Accept: 'application/json',

@@ -63,7 +63,7 @@ class InsumosScreen extends Component {
                 <FlatList
                     data={this.state.insumos}
                     ItemSeparatorComponent={() => <Divider />}
-                    keyExtractor={item => item._id}
+                    keyExtractor={item => item.id}
                     renderItem={({ item }) =>
                         <ListItem
                             primaryText={item.nome}

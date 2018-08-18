@@ -40,7 +40,7 @@ class CadastroLoteProprietarioScreen extends React.Component {
         const usuario = await storage.getUsuario();
         const lote = new Lote();
         lote.nome = this.state.nome;
-        lote.idUsuario = usuario.data._id;
+        lote.idUsuario = usuario.data.id;
         lote.animais = [
             {
                 tipo: 'bezeros(0-12)',

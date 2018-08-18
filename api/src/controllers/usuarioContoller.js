@@ -7,6 +7,7 @@ module.exports = {
     insert(req, res) {
         const usuario = req.body.data;
         usuario.id = uuid();
+        usuario.tipo = 'proprietario';
         provider.insert('usuarios', usuario).then(() => {
             res.json(retorno(200, true, 'Usuário inserido com sucesso.', usuario));
         }).catch((erro) => {
@@ -46,8 +47,6 @@ module.exports = {
             email,
             senha,
         };
-
-        console.log(query);
         provider.find('usuarios', query)
             .then((usuarios) => {
                 if (usuarios.length > 0) {
