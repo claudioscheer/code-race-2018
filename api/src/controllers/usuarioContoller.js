@@ -81,4 +81,14 @@ module.exports = {
             res.status(500).json(retorno(500, false, 'Excessão interna na busca do usuário.'));
         });
     },
+    
+    findClientes(req, res) {
+        const filter = {tipo : 'proprietario'}
+
+        provider.find('usuarios', filter).then((usuarios) => {
+            res.json(retorno(200, true, '', usuarios));
+        }).catch((erro) => {
+            res.status(401).json(retorno(999, false, `Não foi possível consultar os usuários. ${erro}`));
+        });
+    },
 };

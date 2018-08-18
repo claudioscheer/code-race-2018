@@ -18,6 +18,12 @@ router.get(
     userController.find,
 );
 
+router.get(
+    '/clientes/',
+    auth.verifyToken,
+    userController.findClientes
+)
+
 // Salvar ou atualizar usuário.
 router.post(
     '/create',

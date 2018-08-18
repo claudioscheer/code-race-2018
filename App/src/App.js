@@ -13,6 +13,7 @@ import CadastroLoteProprietarioScreen from './screens/proprietario/CadastroLoteP
 import StartupScreen from './screens/StartupScreen';
 import InsumosScreen from './screens/fornecedor/InsumosScreen';
 import CadastroInsumoScreen from './screens/fornecedor/CadastroInsumoScreen'
+import InformacoesClienteScreen from './screens/fornecedor/ClientesScreen'
 import Icon from './componentes/Icon';
 
 const HomeProprietarioStack = createStackNavigator({
@@ -50,13 +51,18 @@ const NavigatorProprietario = createDrawerNavigator({
   });
 
 const NavigatorFornecedor = createDrawerNavigator({
+  Clientes: {
+    screen: createStackNavigator({
+      Clientes: { screen: InformacoesClienteScreen },
+    }),
+  },
   Insumos: {
     screen: createStackNavigator({
       Insumos: { screen: InsumosScreen },
     }),
-  },
+  }
 }, {
-    initialRouteName: 'Insumos',
+    initialRouteName: 'Clientes',
   });
 
 const CadastroProprietarioStack = createStackNavigator({
@@ -71,6 +77,10 @@ const CadastroAtualizacaoInsumoStack = createStackNavigator({
   CadastroAtualizacaoInsumo: { screen: CadastroInsumoScreen },
 });
 
+const InformacoesClientesStack = createStackNavigator({
+  InformacoesCliente: { screen: InformacoesClienteScreen },
+});
+
 const AppNavigator = createStackNavigator(
   {
     Startup: { screen: StartupScreen },
@@ -80,7 +90,8 @@ const AppNavigator = createStackNavigator(
     Proprietario: { screen: NavigatorProprietario },
     Fornecedor: { screen: NavigatorFornecedor },
     Insumos: { screen: InsumosScreen },
-    CadastrarAtualizar: { screen: CadastroAtualizacaoInsumoStack }
+    CadastrarAtualizar: { screen: CadastroAtualizacaoInsumoStack },
+    ListagemCliente : { screen: InformacoesClientesStack}
   },
   {
     initialRouteName: 'Startup',
