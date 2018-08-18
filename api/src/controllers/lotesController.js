@@ -1,6 +1,7 @@
 const provider = require('../provider/dbProvider');
 const retorno = require('../utils/retorno');
-const CollectionName = "lotes"
+
+const CollectionName = 'lotes';
 
 module.exports = {
     insert(req, res) {
@@ -13,7 +14,7 @@ module.exports = {
     },
     update(req, res) {
         const lote = req.body.data;
-        const filter = req.body.filter;
+        const { filter } = req.body;
 
         provider.updateOne(CollectionName, filter, lote).then(() => {
             res.status(200).json(retorno(200, true, 'Lote alterado com sucesso.'));
@@ -22,7 +23,7 @@ module.exports = {
         });
     },
     delete(req, res) {
-        const filter = {id : req.params.id};
+        const filter = { id: req.params.id };
         provider.delete(CollectionName, filter).then(() => {
             res.status(200).json(retorno(200, true, 'Lote excluído com sucesso.'));
         }).catch((erro) => {
@@ -30,13 +31,11 @@ module.exports = {
         });
     },
     find(req, res) {
-        const filter = req.params.id ? {id : req.params.id}:{};
-
-
+        const filter = { idUsuario: req.params.id };
         provider.find(CollectionName, filter).then((lotes) => {
             res.json(retorno(200, true, '', lotes));
         }).catch((erro) => {
             res.status(401).json(retorno(401, false, `Não foi possível consultar os lotes. ${erro}`));
         });
-    }
+    },
 };

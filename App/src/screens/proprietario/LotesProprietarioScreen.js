@@ -10,26 +10,28 @@ import {
     ListItem,
 } from '../../componentes/list';
 import {
-    getUsuarios,
-} from '../../services/HomeService';
+    getLotes,
+} from '../../services/LoteService';
 import IconButton from '../../componentes/button/IconButton';
 
-class HomeProprietarioScreen extends React.Component {
+class LotesProprietarioScreen extends React.Component {
     static navigationOptions = ({ navigation }) => ({
-        headerTitle: 'Proprietário',
-        headerLeft: <IconButton iconName="menu" iconColor="#000" onPress={() => navigation.goBack(null)} />
+        headerTitle: 'Lotes',
+        headerLeft: <IconButton iconName="menu" iconColor="#000" onPress={() => navigation.openDrawer()} />,
+        headerRight: <IconButton iconName="add" iconColor="#000" onPress={() => navigation.navigate('CadastroLoteProprietario')} />,
     });
     state = {
-        usuarios: [],
+        lotes: [],
     };
 
     async componentWillMount() {
-        const response = await getUsuarios();
-        if (response.status !== 200) {
-            Toast.show(response.mensagem);
-            return;
-        }
-        this.setState({ usuarios: response.data });
+        const response = await getLotes();
+        // alert(JSON.stringify(response));
+        // if (response.status !== 200) {
+        //     Toast.show(response.mensagem);
+        //     return;
+        // }
+        // this.setState({ usuarios: response.data });
     }
 
     render() {
@@ -50,4 +52,4 @@ class HomeProprietarioScreen extends React.Component {
     }
 }
 
-export default HomeProprietarioScreen;
+export default LotesProprietarioScreen;

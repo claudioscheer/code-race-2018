@@ -3,8 +3,4 @@ export default class Lotes {
     nome;
     animais; //collection
     idUsuario;
-
-    constructor() {
-        //...
-    }
-  }
+}

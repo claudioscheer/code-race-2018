@@ -61,6 +61,7 @@ class LoginScreen extends React.Component {
 
                     />
                     <Hoshi
+                        secureTextEntry={true}
                         label='Senha'
                         borderColor={'#b76c94'}
                         value={this.state.senha}

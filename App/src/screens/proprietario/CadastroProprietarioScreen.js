@@ -102,6 +102,7 @@ class CadastroProprietarioScreen extends React.Component {
                     style={{ marginTop: 16 }}
                 />
                 <Hoshi
+                    secureTextEntry={true}
                     label='Senha'
                     borderColor='#b76c94'
                     value={this.state.senha}
@@ -109,6 +110,7 @@ class CadastroProprietarioScreen extends React.Component {
                     style={{ marginTop: 16 }}
                 />
                 <Hoshi
+                    secureTextEntry={true}
                     label='Confirmação de senha'
                     borderColor='#b76c94'
                     value={this.state.confirmacaoSenha}
