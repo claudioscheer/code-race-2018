@@ -19,14 +19,19 @@ import {
 class InsumosScreen extends Component {
     static navigationOptions = ({ navigation }) => ({
         headerTitle: 'Insumos',
-        headerLeft: <IconButton iconName="menu" iconColor="#000" onPress={() => navigation.openDrawer()} />
+        headerLeft: <IconButton iconName="menu" iconColor="#000" onPress={() => navigation.openDrawer()} />,
+        headerRight: <IconButton iconName="add" iconColor="#000" onPress={() => navigation.navigate('CadastrarAtualizar',{metodo : 'ins'})} />
     });
  
     state = {
         insumos: [],
     };
 
-    async componentWillMount() {
+    componentWillMount() {
+        this.buscarInsumos()
+    }
+
+    async buscarInsumos(){
         const response = await buscarInsumo();
         this.setState({ insumos: response.data});
     }
@@ -39,10 +44,12 @@ class InsumosScreen extends Component {
 
     async excluir(item){
         let filter = {id : item.id}
+        alert(JSON.stringify(filter));
         const response = await excluirInsumo(filter)
         
         if(response.status === 200){
             Toast.show(response.mensagem);
+            this.buscarInsumos();
         }
     }
 

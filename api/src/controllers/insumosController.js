@@ -23,6 +23,9 @@ module.exports = {
     },
     delete(req, res) {
         const filter = {id : req.params.id};
+        console.log(filter);
+
+
         provider.delete(CollectionName, filter).then(() => {
             res.status(200).json(retorno(200, true, 'insumo excluído com sucesso.'));
         }).catch((erro) => {

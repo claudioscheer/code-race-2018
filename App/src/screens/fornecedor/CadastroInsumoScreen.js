@@ -17,6 +17,13 @@ import Insumo from '../../models/insumo';
 
 class CadastroInsumoScreen extends Component {
 
+  static navigationOptions = ({ navigation }) => ({
+
+    headerTitle: `${navigation.state.params.metodo == 'ins' ? "Novo insumo" : "Atualização de insumo"}`,
+    headerLeft: <IconButton iconName="menu" iconColor="#000" onPress={() => navigation.openDrawer()} />,
+    headerRight: <IconButton iconName="add" iconColor="#000" onPress={() => navigation.navigate('CadastrarAtualizar', { metodo: 'ins' })} />
+  });
+
   constructor(props) {
 
     super(props);
@@ -99,5 +106,15 @@ class CadastroInsumoScreen extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16
+  },
+  buttonContainer: {
+    marginTop: 16
+  }
+});
 
 export default CadastroInsumoScreen;

@@ -73,16 +73,12 @@ export async function excluirInsumo(filter) {
     const usuario = await storage.getUsuario();
     try {
         let response = await fetch(
-            `${configuracoes.hostApi}/insumos/delete`, {
+            `${configuracoes.hostApi}/insumos/delete/${filter.id}`, {
                 method: 'DELETE',
                 headers: {
                     Accept: 'application/json',
-                    'Content-Type': 'application/json',
                     Authorization: `Bearer ${usuario.token}`,
-                },
-                body: JSON.stringify({
-                    filter : filter
-                }),
+                }
             }
         );
         let responseJson = await response.json();
