@@ -1,3 +1,4 @@
+const uuid = require('uuid/v4');
 const provider = require('../provider/dbProvider');
 const retorno = require('../utils/retorno');
 const auth = require('./auth');
@@ -5,6 +6,7 @@ const auth = require('./auth');
 module.exports = {
     insert(req, res) {
         const usuario = req.body.data;
+        usuario.id = uuid();
         provider.insert('usuarios', usuario).then(() => {
             res.json(retorno(200, true, 'Usuário inserido com sucesso.', usuario));
         }).catch((erro) => {
@@ -22,7 +24,7 @@ module.exports = {
         });
     },
     delete(req, res) {
-        const filter = {id : req.params.id};
+        const filter = { id: req.params.id };
         provider.delete('usuarios', filter).then(() => {
             res.status(200).json(retorno(200, true, 'Usuário excluído com sucesso.'));
         }).catch((erro) => {

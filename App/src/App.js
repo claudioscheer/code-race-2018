@@ -29,10 +29,10 @@ HomeProprietarioStack.navigationOptions = {
 };
 
 const HomeFornecedorStack = createStackNavigator({
-  Home: { screen: InsumosScreen },
+  Insumos: { screen: InsumosScreen },
 });
 HomeFornecedorStack.navigationOptions = {
-  drawerLabel: 'Home',
+  drawerLabel: 'Insumos',
   drawerIcon: ({ tintColor }) => (
     <Icon
       name="flower"
@@ -50,13 +50,13 @@ const NavigatorProprietario = createDrawerNavigator({
   });
 
 const NavigatorFornecedor = createDrawerNavigator({
-  Home: {
+  Insumos: {
     screen: createStackNavigator({
       Insumos: { screen: InsumosScreen },
     }),
   },
 }, {
-    initialRouteName: 'Home',
+    initialRouteName: 'Insumos',
   });
 
 const CadastroProprietarioStack = createStackNavigator({
@@ -65,6 +65,10 @@ const CadastroProprietarioStack = createStackNavigator({
 
 const CadastroLoteProprietarioStack = createStackNavigator({
   CadastroLoteProprietario: { screen: CadastroLoteProprietarioScreen },
+});
+
+const CadastroAtualizacaoInsumoStack = createStackNavigator({
+  CadastroAtualizacaoInsumo: { screen: CadastroInsumoScreen },
 });
 
 const AppNavigator = createStackNavigator(
@@ -76,7 +80,7 @@ const AppNavigator = createStackNavigator(
     Proprietario: { screen: NavigatorProprietario },
     Fornecedor: { screen: NavigatorFornecedor },
     Insumos: { screen: InsumosScreen },
-    CadastrarAtualizar: { screen: CadastroInsumoScreen }
+    CadastrarAtualizar: { screen: CadastroAtualizacaoInsumoStack }
   },
   {
     initialRouteName: 'Startup',

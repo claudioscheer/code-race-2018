@@ -14,14 +14,15 @@ import {
 } from '../../services/InsumoService';
 import storage from '../../services/Storage';
 import Insumo from '../../models/insumo';
+import IconButton from '../../componentes/button/IconButton'
+import uuid from 'react-native-uuid'
 
 class CadastroInsumoScreen extends Component {
 
   static navigationOptions = ({ navigation }) => ({
-
     headerTitle: `${navigation.state.params.metodo == 'ins' ? "Novo insumo" : "Atualização de insumo"}`,
-    headerLeft: <IconButton iconName="menu" iconColor="#000" onPress={() => navigation.openDrawer()} />,
-    headerRight: <IconButton iconName="add" iconColor="#000" onPress={() => navigation.navigate('CadastrarAtualizar', { metodo: 'ins' })} />
+    headerLeft: <IconButton iconName="arrow-back" iconColor="#000" onPress={() => navigation.goBack(null)} />,
+
   });
 
   constructor(props) {
@@ -56,6 +57,7 @@ class CadastroInsumoScreen extends Component {
     }
 
     const insumo = new Insumo();
+    insumo.id = uuid.v1();
     insumo.nome = this.state.nome;
     insumo.descricao = this.state.descricao;
     insumo.valor = this.state.valor;

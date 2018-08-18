@@ -10,9 +10,9 @@ const router = express.Router();
 
 //get category info
 router.get(
-    '/find/:id?',
+    '/find/:id',
     // auth.verifyToken,
-    lotesController.find
+    lotesController.find,
 );
 
 //CAtegory create

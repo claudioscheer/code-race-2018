@@ -1,3 +1,4 @@
+const uuid = require('uuid/v4');
 const provider = require('../provider/dbProvider');
 const retorno = require('../utils/retorno');
 
@@ -6,6 +7,7 @@ const CollectionName = 'lotes';
 module.exports = {
     insert(req, res) {
         const lote = req.body.data;
+        lote.id = uuid();
         provider.insert(CollectionName, lote).then(() => {
             res.json(retorno(200, true, 'Lote inserido com sucesso.'));
         }).catch((erro) => {
