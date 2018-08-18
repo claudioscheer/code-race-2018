@@ -11,18 +11,13 @@ router.post(
     userController.validateUser,
 );
 
-// Todos os usuários.
-router.get(
-    '/',
-    auth.verifyToken,
-    userController.find,
-);
+
 
 // Informações completas sobre o usuário.
-router.post(
-    '/find',
-    auth.verifyToken,
-    userController.findOne,
+router.get(
+    '/find/:id?',
+    //auth.verifyToken,
+    userController.find,
 );
 
 // Salvar ou atualizar usuário.

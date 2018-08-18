@@ -6,7 +6,7 @@ module.exports = {
     insert(req, res) {
         const insumo = req.body.data;
         provider.insert(CollectionName, insumo).then(() => {
-            res.json(retorno(200, true, 'Proprietário inserido com sucesso.'));
+            res.json(retorno(200, true, 'Insumo inserido com sucesso.'));
         }).catch((erro) => {
             res.status(401).json(retorno(401, false, `Não foi possível inserir o insumo. ${erro}`));
         });

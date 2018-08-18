@@ -30,7 +30,8 @@ module.exports = {
         });
     },
     find(req, res) {
-        provider.find('usuarios', {}).then((usuarios) => {
+        let filter = {id:req.params.id}
+        provider.find('usuarios', filter).then((usuarios) => {
             res.json(retorno(200, true, '', usuarios));
         }).catch((erro) => {
             res.status(401).json(retorno(999, false, `Não foi possível consultar os usuários. ${erro}`));
