@@ -14,14 +14,14 @@ import {
 } from '../../services/InsumoService';
 import storage from '../../services/Storage';
 import Insumo from '../../models/insumo';
+import IconButton from '../../componentes/button/IconButton'
 
 class CadastroInsumoScreen extends Component {
 
   static navigationOptions = ({ navigation }) => ({
-
     headerTitle: `${navigation.state.params.metodo == 'ins' ? "Novo insumo" : "Atualização de insumo"}`,
-    headerLeft: <IconButton iconName="menu" iconColor="#000" onPress={() => navigation.openDrawer()} />,
-    headerRight: <IconButton iconName="add" iconColor="#000" onPress={() => navigation.navigate('CadastrarAtualizar', { metodo: 'ins' })} />
+    headerLeft: <IconButton iconName="arrow-back" iconColor="#000" onPress={() => navigation.goBack(null)} />,
+
   });
 
   constructor(props) {

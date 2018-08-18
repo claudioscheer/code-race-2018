@@ -2,7 +2,6 @@ import storage from './Storage';
 import configuracoes from '../config';
 
 export async function buscarInsumo(filter) {
-    alert('entrou funcao');
     const usuario = await storage.getUsuario();
     try {
         let response = await fetch(
