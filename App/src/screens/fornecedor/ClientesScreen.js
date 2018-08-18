@@ -55,7 +55,7 @@ class ClientesScreen extends Component {
                     renderItem={({ item }) =>
                         <ListItem
                             primaryText={item.nome}
-                            onPress={() => this.props.navigation.navigate('RecomendacaoInsumo', {
+                            onPress={() => this.props.navigation.navigate('LotesCliente', {
                                 item,
                             })}
                         />

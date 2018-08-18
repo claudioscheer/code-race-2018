@@ -12,9 +12,8 @@ import {
     ListItem,
 } from '../../componentes/list';
 import {
-    excluirLote,
-    getLotes,
-} from '../../services/LoteService';
+    getRelatorio,
+} from '../../services/UsuarioService';
 import IconButton from '../../componentes/button/IconButton';
 
 class RelatorioProprietarioScreen extends React.Component {
@@ -23,9 +22,11 @@ class RelatorioProprietarioScreen extends React.Component {
         headerLeft: <IconButton iconName="menu" iconColor="#000" onPress={() => navigation.openDrawer()} />,
     });
     state = {
+        relatorio: [],
     };
 
     async componentWillMount() {
+        const response = await getRelatorio();
     }
 
     render() {

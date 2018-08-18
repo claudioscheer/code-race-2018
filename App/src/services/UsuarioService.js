@@ -62,7 +62,7 @@ export async function cadastrarUsuario(usuario) {
     } catch (error) {
         throw error;
     }
-    
+
 };
 
 export async function buscarClientes(filter) {
@@ -75,7 +75,6 @@ export async function buscarClientes(filter) {
                     Accept: 'application/json',
                     Authorization: `Bearer ${usuario.token}`,
                 }
-            
             }
         );
         let responseJson = await response.json();
@@ -84,3 +83,48 @@ export async function buscarClientes(filter) {
         throw error;
     }
 };
+
+export async function alterarCliente(valores) {
+    const usuario = await storage.getUsuario();
+    try {
+        let response = await fetch(
+            `${configuracoes.hostApi}/usuario/update`, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${usuario.token}`,
+                },
+                body: JSON.stringify({
+                    filter: { id: valores.filter.clienteId },
+                    data: valores,
+                }),
+            }
+        );
+        let responseJson = await response.json();
+        return responseJson;
+    } catch (error) {
+        throw error;
+    }
+};
+
+export async function getRelatorio() {
+    const usuario = await storage.getUsuario();
+    try {
+        let response = await fetch(
+            `${configuracoes.hostApi}/usuario/relatorio/${usuario.data.id}`, {
+                method: 'GET',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${usuario.token}`,
+                },
+            }
+        );
+        let responseJson = await response.json();
+        return responseJson;
+    } catch (error) {
+        throw error;
+    }
+};
+

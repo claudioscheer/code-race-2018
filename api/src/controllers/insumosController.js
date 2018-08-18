@@ -16,7 +16,7 @@ module.exports = {
     },
     update(req, res) {
         const insumo = req.body.data;
-        const filter  = req.body.filter;
+        const filter = req.body.filter;
 
         delete insumo['_id']
 

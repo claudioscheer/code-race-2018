@@ -15,9 +15,10 @@ import StartupScreen from './screens/StartupScreen';
 import InsumosScreen from './screens/fornecedor/InsumosScreen';
 import CadastroInsumoScreen from './screens/fornecedor/CadastroInsumoScreen'
 import InformacoesClienteScreen from './screens/fornecedor/ClientesScreen';
-import RecomendacaoInsumoScreen from './screens/fornecedor/RecomendacaoInsumoScreen';
+import LotesClienteScreen from './screens/fornecedor/LotesClienteScreen';
 import Icon from './componentes/Icon';
 import ClientesScreen from './screens/fornecedor/ClientesScreen';
+import RecomendacaoInsumoScreen from './screens/fornecedor/RecomendacaoInsumoScreen';
 
 const LotesProprietarioStack = createStackNavigator({
   Home: { screen: LotesProprietarioScreen },
@@ -102,6 +103,10 @@ const InformacoesClientesStack = createStackNavigator({
   InformacoesCliente: { screen: InformacoesClienteScreen },
 });
 
+const LotesClienteStack = createStackNavigator({
+  LotesCliente: { screen: LotesClienteScreen },
+});
+
 const RecomendacaoInsumoStack = createStackNavigator({
   RecomendacaoInsumo: { screen: RecomendacaoInsumoScreen },
 });
@@ -112,6 +117,7 @@ const AppNavigator = createStackNavigator(
     Login: { screen: LoginScreen },
     CadastroProprietario: { screen: CadastroProprietarioStack },
     RecomendacaoInsumo: { screen: RecomendacaoInsumoStack },
+    LotesCliente: { screen: LotesClienteStack },
     CadastroLoteProprietario: { screen: CadastroLoteProprietarioStack },
     Proprietario: { screen: NavigatorProprietario },
     Fornecedor: { screen: NavigatorFornecedor },

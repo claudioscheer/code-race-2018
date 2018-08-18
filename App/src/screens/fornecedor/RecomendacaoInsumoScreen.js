@@ -5,8 +5,9 @@ import {
     StyleSheet,
     Text,
     TextInput,
+    Button,
 } from 'react-native';
-import { Kaede } from 'react-native-textinput-effects';
+import { Hoshi } from 'react-native-textinput-effects';
 
 import IconButton from '../../componentes/button/IconButton'
 import ListItem from '../../componentes/list/ListItem'
@@ -15,7 +16,7 @@ import Divider from '../../componentes/list/Divider'
 
 import Toast from '../../componentes/Toast';
 import {
-    buscarClientes
+    alterarCliente,
 } from '../../services/UsuarioService';
 import {
     getLotesCliente,
@@ -31,72 +32,53 @@ class RecomendacaoInsumoScreen extends Component {
     });
     state = {
         insumos: [],
-        lotes: [],
-        valoresInsumos: {},
+        valores: {},
     };
 
     async componentDidMount() {
-        const item = this.props.navigation.state.params.item;
-        const lotes = await getLotesCliente(item.id);
+        const item = this.props.navigation.state.params;
         const insumos = await buscarInsumo();
-        this.setState({ lotes: lotes.data, insumos: insumos.data });
+        this.setState({ insumos: insumos.data });
     }
 
     alterarValor(campo, valor) {
-        const state = this.state;
+        const state = this.state.valores;
         state[campo] = valor;
-        this.setState({ ...state });
+        this.setState({ valores: state });
     }
 
-    mudarValorInsumo(id, valor) {
-        const valores = this.state.valoresInsumos;
-        valores[id] = valor;
-        this.setState({ valoresInsumos: valores });
+    async salvar() {
+        const response = await alterarCliente({
+            filter: this.props.navigation.state.params,
+            insumos: this.state.valores,
+        });
     }
 
     render() {
         return (
             <ScrollView style={styles.container}>
                 {
-                    this.state.lotes.map((lote) => {
+                    this.state.insumos.map((insumo) => {
                         return (
-                            <View key={lote.id}>
-                                <ListItem
-                                    style={{ backgroundColor: '#BBB' }}
-                                    primaryText={lote.nome}
+                            <View key={insumo.id}>
+                                <Hoshi
+                                    keyboardType="numeric"
+                                    label={insumo.nome}
+                                    borderColor={'#b76c94'}
+                                    value={this.state.valores[insumo.id] || ''}
+                                    style={{ marginTop: 16 }}
+                                    onChangeText={valor => this.alterarValor(insumo.id, valor)}
                                 />
-                                {
-                                    lote.animais.filter(x => x.quantidade > 0).map((animal) => {
-                                        return (
-                                            <View key={animal.id}>
-                                                <ListItem
-                                                    primaryText={animal.tipo}
-                                                    secondaryText={'Quantidade: ' + animal.quantidade}
-                                                />
-                                                <View>
-                                                    {
-                                                        this.state.insumos.map((insumo, index) => {
-                                                            const id = `${lote.id}|${animal.id}|${insumo.id}`;
-                                                            return (
-                                                                <View key={insumo.id}>
-                                                                    <Kaede
-                                                                        label={insumo.nome}
-                                                                        onChangeText={text => this.mudarValorInsumo(id, text)}
-                                                                        value={this.state.valoresInsumos[id]}
-                                                                    />
-                                                                </View>
-                                                            );
-                                                        })
-                                                    }
-                                                </View>
-                                            </View>
-                                        )
-                                    })
-                                }
                             </View>
                         );
                     })
                 }
+                <View style={styles.buttonContainer}>
+                    <Button
+                        title="Salvar"
+                        color="green"
+                        onPress={() => this.salvar()} />
+                </View>
             </ScrollView>
         );
     }
@@ -106,7 +88,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#FFF',
-    }
+    },
+    buttonContainer: {
+        paddingBottom: 16,
+        marginTop: 24
+    },
 });
 
 export default RecomendacaoInsumoScreen;

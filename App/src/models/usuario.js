@@ -10,4 +10,5 @@ export default class Usuario {
     clienteServico; //Contratacao veterinario true ou false
     frequenciaEntrega; // Quinzenalmente, mensalmente, anualmente
     atualizacoesTemporarias;// Atualizacoes para serem exibidas em tela
+    recomendacoes; // insumos recomendados por tipo de animal do lote
 }

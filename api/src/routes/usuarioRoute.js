@@ -19,10 +19,16 @@ router.get(
 );
 
 router.get(
+    '/relatorio/:id',
+    auth.verifyToken,
+    userController.relatorio,
+);
+
+router.get(
     '/clientes/',
     auth.verifyToken,
     userController.findClientes,
-)
+);
 
 // Salvar ou atualizar usuário.
 router.post(
