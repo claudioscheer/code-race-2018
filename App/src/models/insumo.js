@@ -1,4 +1,4 @@
-export default class Insumos {
+export default class Insumo {
     id;
     nome;
     descricao;

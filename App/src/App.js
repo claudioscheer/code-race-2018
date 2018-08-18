@@ -7,11 +7,14 @@ import {
   createDrawerNavigator,
 } from 'react-navigation';
 import HomeProprietarioScreen from './screens/proprietario/HomeProprietarioScreen';
-import HomeFornecedorScreen from './screens/fornecedor/HomeFornecedorScreen';
 import LoginScreen from './screens/LoginScreen';
 import CadastroProprietarioScreen from './screens/proprietario/CadastroProprietarioScreen';
 import StartupScreen from './screens/StartupScreen';
+import InsumosScreen from './screens/fornecedor/InsumosScreen'
+import CadastroInsumoScreen from './screens/fornecedor/CadastroInsumoScreen'
 import Icon from './componentes/Icon';
+
+
 
 const HomeProprietarioStack = createStackNavigator({
   Home: { screen: HomeProprietarioScreen },
@@ -27,7 +30,7 @@ HomeProprietarioStack.navigationOptions = {
 };
 
 const HomeFornecedorStack = createStackNavigator({
-  Home: { screen: HomeFornecedorScreen },
+  Home: { screen: InsumosScreen },
 });
 HomeFornecedorStack.navigationOptions = {
   drawerLabel: 'Home',
@@ -49,7 +52,7 @@ const NavigatorProprietario = createDrawerNavigator({
 
 const NavigatorFornecedor = createDrawerNavigator({
   Home: {
-    screen: HomeFornecedorScreen,
+    screen: InsumosScreen,
   },
 }, {
     initialRouteName: 'Home',
@@ -66,6 +69,8 @@ const AppNavigator = createStackNavigator(
     CadastroProprietario: { screen: CadastroProprietarioStack },
     Proprietario: { screen: NavigatorProprietario },
     Fornecedor: { screen: NavigatorFornecedor },
+    Insumos: { screen: InsumosScreen },
+    CadastrarAtualizar: { screen: CadastroInsumoScreen }
   },
   {
     initialRouteName: 'Startup',
